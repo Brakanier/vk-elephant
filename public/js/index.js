@@ -851,6 +851,61 @@ exports.default = _default;
 
 /***/ }),
 
+/***/ "./node_modules/@vkontakte/icons/dist/24/add.js":
+/*!******************************************************!*\
+  !*** ./node_modules/@vkontakte/icons/dist/24/add.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _browserSymbol = _interopRequireDefault(__webpack_require__(/*! svg-baker-runtime/browser-symbol */ "./node_modules/svg-baker-runtime/browser-symbol.js"));
+
+var _es6ObjectAssign = __webpack_require__(/*! es6-object-assign */ "./node_modules/es6-object-assign/index.js");
+
+var _sprite = _interopRequireDefault(__webpack_require__(/*! ../sprite */ "./node_modules/@vkontakte/icons/dist/sprite.js"));
+
+var _SvgIcon = _interopRequireDefault(__webpack_require__(/*! ../SvgIcon */ "./node_modules/@vkontakte/icons/dist/SvgIcon.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var viewBox = '0 0 24 24';
+var id = 'add_24';
+var content = '<symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="add_24"><g fill="none" fill-rule="evenodd"><path d="M0 0h24v24H0z" /><path d="M13 11h6.5a1 1 0 0 1 0 2H13v6.5a1 1 0 0 1-2 0V13H4.5a1 1 0 0 1 0-2H11V4.5a1 1 0 0 1 2 0V11z" fill="currentColor" /></g></symbol>';
+
+if (_sprite.default) {
+  var browserSymbol = new _browserSymbol.default({
+    id: id,
+    viewBox: viewBox,
+    content: content
+  });
+
+  _sprite.default.add(browserSymbol);
+}
+
+function Icon(props) {
+  return _react.default.createElement(_SvgIcon.default, (0, _es6ObjectAssign.assign)({}, props, {
+    viewBox: viewBox,
+    id: id,
+    width: !isNaN(props.width) ? +props.width : 24,
+    height: !isNaN(props.height) ? +props.height : 24
+  }));
+}
+
+var _default = Icon;
+exports.default = _default;
+
+/***/ }),
+
 /***/ "./node_modules/@vkontakte/icons/dist/24/back.js":
 /*!*******************************************************!*\
   !*** ./node_modules/@vkontakte/icons/dist/24/back.js ***!
@@ -2988,6 +3043,66 @@ HorizontalScroll.propTypes = {
 var _default = HorizontalScroll;
 exports.default = _default;
 //# sourceMappingURL=HorizontalScroll.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@vkontakte/vkui/dist/components/Link/Link.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@vkontakte/vkui/dist/components/Link/Link.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js"));
+
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _getClassName = _interopRequireDefault(__webpack_require__(/*! ../../helpers/getClassName */ "./node_modules/@vkontakte/vkui/dist/helpers/getClassName.js"));
+
+var _classNames = _interopRequireDefault(__webpack_require__(/*! ../../lib/classNames */ "./node_modules/@vkontakte/vkui/dist/lib/classNames.js"));
+
+var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js"));
+
+var baseClassName = (0, _getClassName.default)('Link');
+
+var Link = function Link(_ref) {
+  var children = _ref.children,
+      className = _ref.className,
+      Component = _ref.Component,
+      getRootRef = _ref.getRootRef,
+      restProps = (0, _objectWithoutProperties2.default)(_ref, ["children", "className", "Component", "getRootRef"]);
+  return _react.default.createElement(Component, (0, _extends2.default)({}, restProps, {
+    ref: getRootRef,
+    className: (0, _classNames.default)(baseClassName, className)
+  }), children);
+};
+
+Link.propTypes = {
+  children: _propTypes.default.node,
+  className: _propTypes.default.string,
+  Component: _propTypes.default.any,
+  getRootRef: _propTypes.default.oneOfType([_propTypes.default.func, _propTypes.default.shape({
+    current: _propTypes.default.any
+  })])
+};
+Link.defaultProps = {
+  Component: 'a'
+};
+var _default = Link;
+exports.default = _default;
+//# sourceMappingURL=Link.js.map
 
 /***/ }),
 
@@ -79300,16 +79415,27 @@ var App = function App() {
       popout = _useState8[0],
       setPopout = _useState8[1];
 
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(null),
+      _useState10 = _slicedToArray(_useState9, 2),
+      authToken = _useState10[0],
+      setAuthToken = _useState10[1];
+
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     _vkontakte_vk_connect__WEBPACK_IMPORTED_MODULE_2___default.a.subscribe(function (_ref) {
       var _ref$detail = _ref.detail,
           type = _ref$detail.type,
           data = _ref$detail.data;
 
-      if (type === 'VKWebAppUpdateConfig') {
-        var schemeAttribute = document.createAttribute('scheme');
-        schemeAttribute.value = data.scheme ? data.scheme : 'client_light';
-        document.body.attributes.setNamedItem(schemeAttribute);
+      switch (type) {
+        case 'VKWebAppUpdateConfig':
+          var schemeAttribute = document.createAttribute('scheme');
+          schemeAttribute.value = data.scheme ? data.scheme : 'client_light';
+          document.body.attributes.setNamedItem(schemeAttribute);
+          break;
+
+        case 'VKWebAppAccessTokenReceived':
+          setAuthToken(data.access_token);
+          break;
       }
     });
 
@@ -79331,12 +79457,7 @@ var App = function App() {
 
               case 2:
                 user = _context.sent;
-                setUser(user); // Axios.get('http://127.0.0.1:8000/')
-                // 	.then(res => {
-                // 		const player = res.data;
-                // 		setPlayer(player);
-                // 	})
-
+                setUser(user);
                 setPopout(null);
 
               case 5:
@@ -79351,33 +79472,6 @@ var App = function App() {
 
     fetchData();
   }, []);
-
-  var getTop = function getTop() {
-    _vkontakte_vk_connect__WEBPACK_IMPORTED_MODULE_2___default.a.sendPromise("VKWebAppGetAuthToken", {
-      "app_id": 7160668,
-      "scope": "friends"
-    }).then(function (res) {
-      console.log(res.access_token);
-      var token = res.access_token;
-      axios__WEBPACK_IMPORTED_MODULE_8___default.a.get('/top').then(function (res) {
-        console.log(res.data);
-        var user_ids = res.data.map(function (item, index) {
-          return item.vk_id;
-        });
-        _vkontakte_vk_connect__WEBPACK_IMPORTED_MODULE_2___default.a.sendPromise("VKWebAppCallAPIMethod", {
-          "method": "users.get",
-          "request_id": "test-users-get",
-          "params": {
-            "user_ids": user_ids,
-            "v": "5.102",
-            "access_token": token
-          }
-        }).then(function (res) {
-          console.log(res);
-        });
-      });
-    });
-  };
 
   var go = function go(e) {
     setActivePanel(e.currentTarget.dataset.to);
@@ -79445,6 +79539,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _vkontakte_vkui_dist_components_Avatar_Avatar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/Avatar/Avatar */ "./node_modules/@vkontakte/vkui/dist/components/Avatar/Avatar.js");
 /* harmony import */ var _vkontakte_vkui_dist_components_Avatar_Avatar__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_Avatar_Avatar__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _vkontakte_vkui_dist_components_Link_Link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/Link/Link */ "./node_modules/@vkontakte/vkui/dist/components/Link/Link.js");
+/* harmony import */ var _vkontakte_vkui_dist_components_Link_Link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_Link_Link__WEBPACK_IMPORTED_MODULE_2__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -79466,6 +79562,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var TopItem =
 /*#__PURE__*/
 function (_React$Component) {
@@ -79480,7 +79577,10 @@ function (_React$Component) {
   _createClass(TopItem, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Link_Link__WEBPACK_IMPORTED_MODULE_2___default.a, {
+        href: this.props.href,
+        target: "_blank"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
           display: "flex",
           alignItems: "center",
@@ -79494,11 +79594,11 @@ function (_React$Component) {
           fontSize: "24px",
           color: "#4bb34b",
           minWidth: "26px",
-          margin: "0 16px 0 0"
+          margin: "0 8px 0 8px"
         }
       }, this.props.num), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Avatar_Avatar__WEBPACK_IMPORTED_MODULE_1___default.a, {
-        src: this.props.img_url
-      }));
+        src: this.props.imgUrl
+      })));
     }
   }]);
 
@@ -79603,28 +79703,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _vkontakte_vkui_dist_components_Panel_Panel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/Panel/Panel */ "./node_modules/@vkontakte/vkui/dist/components/Panel/Panel.js");
-/* harmony import */ var _vkontakte_vkui_dist_components_Panel_Panel__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_Panel_Panel__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _vkontakte_vkui_dist_components_PanelHeader_PanelHeader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/PanelHeader/PanelHeader */ "./node_modules/@vkontakte/vkui/dist/components/PanelHeader/PanelHeader.js");
-/* harmony import */ var _vkontakte_vkui_dist_components_PanelHeader_PanelHeader__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_PanelHeader_PanelHeader__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _vkontakte_vkui_dist_components_Button_Button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/Button/Button */ "./node_modules/@vkontakte/vkui/dist/components/Button/Button.js");
-/* harmony import */ var _vkontakte_vkui_dist_components_Button_Button__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_Button_Button__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _vkontakte_vkui_dist_components_Group_Group__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/Group/Group */ "./node_modules/@vkontakte/vkui/dist/components/Group/Group.js");
-/* harmony import */ var _vkontakte_vkui_dist_components_Group_Group__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_Group_Group__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _vkontakte_vkui_dist_components_Cell_Cell__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/Cell/Cell */ "./node_modules/@vkontakte/vkui/dist/components/Cell/Cell.js");
-/* harmony import */ var _vkontakte_vkui_dist_components_Cell_Cell__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_Cell_Cell__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _vkontakte_vkui_dist_components_Div_Div__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/Div/Div */ "./node_modules/@vkontakte/vkui/dist/components/Div/Div.js");
-/* harmony import */ var _vkontakte_vkui_dist_components_Div_Div__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_Div_Div__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _vkontakte_vkui_dist_components_Avatar_Avatar__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/Avatar/Avatar */ "./node_modules/@vkontakte/vkui/dist/components/Avatar/Avatar.js");
-/* harmony import */ var _vkontakte_vkui_dist_components_Avatar_Avatar__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_Avatar_Avatar__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _vkontakte_icons_dist_28_users_outline__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @vkontakte/icons/dist/28/users_outline */ "./node_modules/@vkontakte/icons/dist/28/users_outline.js");
-/* harmony import */ var _vkontakte_icons_dist_28_users_outline__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_icons_dist_28_users_outline__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _vkontakte_icons_dist_24_money_circle__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @vkontakte/icons/dist/24/money_circle */ "./node_modules/@vkontakte/icons/dist/24/money_circle.js");
-/* harmony import */ var _vkontakte_icons_dist_24_money_circle__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_icons_dist_24_money_circle__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var _img_elephant_png__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../img/elephant.png */ "./resources/js/img/elephant.png");
-/* harmony import */ var _img_elephant_png__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_img_elephant_png__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var _Elephant_css__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Elephant.css */ "./resources/js/panels/Elephant.css");
-/* harmony import */ var _Elephant_css__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_Elephant_css__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _vkontakte_vk_connect__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vkontakte/vk-connect */ "./node_modules/@vkontakte/vk-connect/dist/index.umd.js");
+/* harmony import */ var _vkontakte_vk_connect__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vk_connect__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _vkontakte_vkui_dist_components_Panel_Panel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/Panel/Panel */ "./node_modules/@vkontakte/vkui/dist/components/Panel/Panel.js");
+/* harmony import */ var _vkontakte_vkui_dist_components_Panel_Panel__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_Panel_Panel__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _vkontakte_vkui_dist_components_PanelHeader_PanelHeader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/PanelHeader/PanelHeader */ "./node_modules/@vkontakte/vkui/dist/components/PanelHeader/PanelHeader.js");
+/* harmony import */ var _vkontakte_vkui_dist_components_PanelHeader_PanelHeader__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_PanelHeader_PanelHeader__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _vkontakte_vkui_dist_components_Button_Button__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/Button/Button */ "./node_modules/@vkontakte/vkui/dist/components/Button/Button.js");
+/* harmony import */ var _vkontakte_vkui_dist_components_Button_Button__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_Button_Button__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _vkontakte_vkui_dist_components_Div_Div__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/Div/Div */ "./node_modules/@vkontakte/vkui/dist/components/Div/Div.js");
+/* harmony import */ var _vkontakte_vkui_dist_components_Div_Div__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_Div_Div__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _vkontakte_icons_dist_28_users_outline__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @vkontakte/icons/dist/28/users_outline */ "./node_modules/@vkontakte/icons/dist/28/users_outline.js");
+/* harmony import */ var _vkontakte_icons_dist_28_users_outline__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_icons_dist_28_users_outline__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _vkontakte_icons_dist_24_money_circle__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @vkontakte/icons/dist/24/money_circle */ "./node_modules/@vkontakte/icons/dist/24/money_circle.js");
+/* harmony import */ var _vkontakte_icons_dist_24_money_circle__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_icons_dist_24_money_circle__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _vkontakte_vkui_dist_components_FixedLayout_FixedLayout__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/FixedLayout/FixedLayout */ "./node_modules/@vkontakte/vkui/dist/components/FixedLayout/FixedLayout.js");
+/* harmony import */ var _vkontakte_vkui_dist_components_FixedLayout_FixedLayout__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_FixedLayout_FixedLayout__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _img_elephant_png__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../img/elephant.png */ "./resources/js/img/elephant.png");
+/* harmony import */ var _img_elephant_png__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_img_elephant_png__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _Elephant_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Elephant.css */ "./resources/js/panels/Elephant.css");
+/* harmony import */ var _Elephant_css__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_Elephant_css__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_12__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -79643,33 +79751,68 @@ var Home = function Home(_ref) {
   var id = _ref.id,
       go = _ref.go,
       player = _ref.player;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Panel_Panel__WEBPACK_IMPORTED_MODULE_2___default.a, {
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(player.count),
+      _useState2 = _slicedToArray(_useState, 2),
+      count = _useState2[0],
+      setCount = _useState2[1];
+
+  var addStory = function addStory() {
+    _vkontakte_vk_connect__WEBPACK_IMPORTED_MODULE_2___default.a.sendPromise("VKWebAppGetAuthToken", {
+      "app_id": 7160668,
+      "scope": "stories"
+    }).then(function (res) {
+      var token = res.access_token;
+      _vkontakte_vk_connect__WEBPACK_IMPORTED_MODULE_2___default.a.sendPromise("VKWebAppCallAPIMethod", {
+        "method": "stories.getPhotoUploadServer",
+        "request_id": "test-stories",
+        "params": {
+          "add_to_news": 1,
+          "link_text": "view",
+          "link_url": "https://vk.com/app7160668",
+          "v": "5.102",
+          "access_token": token
+        }
+      }).then(function (res) {
+        axios__WEBPACK_IMPORTED_MODULE_12___default.a.post('/story', {
+          url: res.response.upload_url
+        }).then(function (res) {
+          if (res.data.add) {
+            setCount(count + 1);
+          }
+        });
+      });
+    });
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Panel_Panel__WEBPACK_IMPORTED_MODULE_3___default.a, {
     id: id
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_PanelHeader_PanelHeader__WEBPACK_IMPORTED_MODULE_3___default.a, null, "\u041A\u0443\u043F\u0438 \u0421\u043B\u043E\u043D\u0430!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_PanelHeader_PanelHeader__WEBPACK_IMPORTED_MODULE_4___default.a, null, "\u041A\u0443\u043F\u0438 \u0421\u043B\u043E\u043D\u0430!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Div_Div__WEBPACK_IMPORTED_MODULE_6___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: "Elephant",
-    src: _img_elephant_png__WEBPACK_IMPORTED_MODULE_11___default.a,
+    src: _img_elephant_png__WEBPACK_IMPORTED_MODULE_10___default.a,
     alt: "Elephant"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Div_Div__WEBPACK_IMPORTED_MODULE_6___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
     style: {
       textAlign: "center"
     }
-  }, "\u0423 \u0432\u0430\u0441 \u0441\u043B\u043E\u043D\u043E\u0432: ", player.count), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Div_Div__WEBPACK_IMPORTED_MODULE_7___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Button_Button__WEBPACK_IMPORTED_MODULE_4___default.a, {
-    before: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_icons_dist_28_users_outline__WEBPACK_IMPORTED_MODULE_9___default.a, null),
+  }, "\u0423 \u0432\u0430\u0441 \u0441\u043B\u043E\u043D\u043E\u0432: ", count)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Div_Div__WEBPACK_IMPORTED_MODULE_6___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Button_Button__WEBPACK_IMPORTED_MODULE_5___default.a, {
+    before: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_icons_dist_28_users_outline__WEBPACK_IMPORTED_MODULE_7___default.a, null),
     level: "overlay_primary",
     size: "xl",
     onClick: go,
     "data-to": "top"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "\u0422\u043E\u043F"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Div_Div__WEBPACK_IMPORTED_MODULE_7___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Button_Button__WEBPACK_IMPORTED_MODULE_4___default.a, {
-    before: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_icons_dist_24_money_circle__WEBPACK_IMPORTED_MODULE_10___default.a, null),
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "\u0422\u043E\u043F"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Div_Div__WEBPACK_IMPORTED_MODULE_6___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Button_Button__WEBPACK_IMPORTED_MODULE_5___default.a, {
+    before: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_icons_dist_24_money_circle__WEBPACK_IMPORTED_MODULE_8___default.a, null),
     level: "commerce",
     size: "xl"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "\u041A\u0443\u043F\u0438\u0442\u044C \u0441\u043B\u043E\u043D\u0430"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Div_Div__WEBPACK_IMPORTED_MODULE_7___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Button_Button__WEBPACK_IMPORTED_MODULE_4___default.a, {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "\u041A\u0443\u043F\u0438\u0442\u044C \u0441\u043B\u043E\u043D\u0430"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Div_Div__WEBPACK_IMPORTED_MODULE_6___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Button_Button__WEBPACK_IMPORTED_MODULE_5___default.a, {
     style: {
       background: '#232323',
       color: "white"
     },
     level: "overlay_primary",
-    size: "xl"
+    size: "xl",
+    onClick: addStory
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "\u041F\u043E\u0434\u0435\u043B\u0438\u0442\u044C\u0441\u044F \u0432 \u0438\u0441\u0442\u043E\u0440\u0438\u0438 (+1 \u0441\u043B\u043E\u043D)"))));
 };
 
@@ -79696,35 +79839,41 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vkontakte/vkui */ "./node_modules/@vkontakte/vkui/dist/es6/index.js");
-/* harmony import */ var _vkontakte_vkui_dist_components_Panel_Panel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/Panel/Panel */ "./node_modules/@vkontakte/vkui/dist/components/Panel/Panel.js");
-/* harmony import */ var _vkontakte_vkui_dist_components_Panel_Panel__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_Panel_Panel__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _vkontakte_vkui_dist_components_PanelHeader_PanelHeader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/PanelHeader/PanelHeader */ "./node_modules/@vkontakte/vkui/dist/components/PanelHeader/PanelHeader.js");
-/* harmony import */ var _vkontakte_vkui_dist_components_PanelHeader_PanelHeader__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_PanelHeader_PanelHeader__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _vkontakte_vkui_dist_components_HeaderButton_HeaderButton__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/HeaderButton/HeaderButton */ "./node_modules/@vkontakte/vkui/dist/components/HeaderButton/HeaderButton.js");
-/* harmony import */ var _vkontakte_vkui_dist_components_HeaderButton_HeaderButton__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_HeaderButton_HeaderButton__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _vkontakte_icons_dist_28_chevron_back__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @vkontakte/icons/dist/28/chevron_back */ "./node_modules/@vkontakte/icons/dist/28/chevron_back.js");
-/* harmony import */ var _vkontakte_icons_dist_28_chevron_back__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_icons_dist_28_chevron_back__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _vkontakte_icons_dist_24_back__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @vkontakte/icons/dist/24/back */ "./node_modules/@vkontakte/icons/dist/24/back.js");
-/* harmony import */ var _vkontakte_icons_dist_24_back__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_icons_dist_24_back__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _vkontakte_vkui_dist_components_FixedLayout_FixedLayout__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/FixedLayout/FixedLayout */ "./node_modules/@vkontakte/vkui/dist/components/FixedLayout/FixedLayout.js");
-/* harmony import */ var _vkontakte_vkui_dist_components_FixedLayout_FixedLayout__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_FixedLayout_FixedLayout__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _vkontakte_vkui_dist_components_Tabs_Tabs__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/Tabs/Tabs */ "./node_modules/@vkontakte/vkui/dist/components/Tabs/Tabs.js");
-/* harmony import */ var _vkontakte_vkui_dist_components_Tabs_Tabs__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_Tabs_Tabs__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _vkontakte_vkui_dist_components_TabsItem_TabsItem__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/TabsItem/TabsItem */ "./node_modules/@vkontakte/vkui/dist/components/TabsItem/TabsItem.js");
-/* harmony import */ var _vkontakte_vkui_dist_components_TabsItem_TabsItem__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_TabsItem_TabsItem__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var _vkontakte_vkui_dist_components_HorizontalScroll_HorizontalScroll__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/HorizontalScroll/HorizontalScroll */ "./node_modules/@vkontakte/vkui/dist/components/HorizontalScroll/HorizontalScroll.js");
-/* harmony import */ var _vkontakte_vkui_dist_components_HorizontalScroll_HorizontalScroll__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_HorizontalScroll_HorizontalScroll__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var _vkontakte_vkui_dist_components_Group_Group__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/Group/Group */ "./node_modules/@vkontakte/vkui/dist/components/Group/Group.js");
-/* harmony import */ var _vkontakte_vkui_dist_components_Group_Group__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_Group_Group__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var _vkontakte_vkui_dist_components_Cell_Cell__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/Cell/Cell */ "./node_modules/@vkontakte/vkui/dist/components/Cell/Cell.js");
-/* harmony import */ var _vkontakte_vkui_dist_components_Cell_Cell__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_Cell_Cell__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var _vkontakte_vkui_dist_components_List_List__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/List/List */ "./node_modules/@vkontakte/vkui/dist/components/List/List.js");
-/* harmony import */ var _vkontakte_vkui_dist_components_List_List__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_List_List__WEBPACK_IMPORTED_MODULE_14__);
-/* harmony import */ var _vkontakte_vkui_dist_components_Avatar_Avatar__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/Avatar/Avatar */ "./node_modules/@vkontakte/vkui/dist/components/Avatar/Avatar.js");
-/* harmony import */ var _vkontakte_vkui_dist_components_Avatar_Avatar__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_Avatar_Avatar__WEBPACK_IMPORTED_MODULE_15__);
-/* harmony import */ var _components_TopItem__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../components/TopItem */ "./resources/js/components/TopItem.js");
-/* harmony import */ var q__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! q */ "./node_modules/q/q.js");
-/* harmony import */ var q__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(q__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var _vkontakte_vk_connect__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @vkontakte/vk-connect */ "./node_modules/@vkontakte/vk-connect/dist/index.umd.js");
+/* harmony import */ var _vkontakte_vk_connect__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vk_connect__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _vkontakte_vkui_dist_components_Panel_Panel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/Panel/Panel */ "./node_modules/@vkontakte/vkui/dist/components/Panel/Panel.js");
+/* harmony import */ var _vkontakte_vkui_dist_components_Panel_Panel__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_Panel_Panel__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _vkontakte_vkui_dist_components_PanelHeader_PanelHeader__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/PanelHeader/PanelHeader */ "./node_modules/@vkontakte/vkui/dist/components/PanelHeader/PanelHeader.js");
+/* harmony import */ var _vkontakte_vkui_dist_components_PanelHeader_PanelHeader__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_PanelHeader_PanelHeader__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _vkontakte_vkui_dist_components_HeaderButton_HeaderButton__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/HeaderButton/HeaderButton */ "./node_modules/@vkontakte/vkui/dist/components/HeaderButton/HeaderButton.js");
+/* harmony import */ var _vkontakte_vkui_dist_components_HeaderButton_HeaderButton__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_HeaderButton_HeaderButton__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _vkontakte_icons_dist_28_chevron_back__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @vkontakte/icons/dist/28/chevron_back */ "./node_modules/@vkontakte/icons/dist/28/chevron_back.js");
+/* harmony import */ var _vkontakte_icons_dist_28_chevron_back__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_icons_dist_28_chevron_back__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _vkontakte_icons_dist_24_back__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @vkontakte/icons/dist/24/back */ "./node_modules/@vkontakte/icons/dist/24/back.js");
+/* harmony import */ var _vkontakte_icons_dist_24_back__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_icons_dist_24_back__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _vkontakte_icons_dist_24_add__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @vkontakte/icons/dist/24/add */ "./node_modules/@vkontakte/icons/dist/24/add.js");
+/* harmony import */ var _vkontakte_icons_dist_24_add__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_icons_dist_24_add__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _vkontakte_vkui_dist_components_FixedLayout_FixedLayout__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/FixedLayout/FixedLayout */ "./node_modules/@vkontakte/vkui/dist/components/FixedLayout/FixedLayout.js");
+/* harmony import */ var _vkontakte_vkui_dist_components_FixedLayout_FixedLayout__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_FixedLayout_FixedLayout__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _vkontakte_vkui_dist_components_Tabs_Tabs__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/Tabs/Tabs */ "./node_modules/@vkontakte/vkui/dist/components/Tabs/Tabs.js");
+/* harmony import */ var _vkontakte_vkui_dist_components_Tabs_Tabs__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_Tabs_Tabs__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _vkontakte_vkui_dist_components_TabsItem_TabsItem__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/TabsItem/TabsItem */ "./node_modules/@vkontakte/vkui/dist/components/TabsItem/TabsItem.js");
+/* harmony import */ var _vkontakte_vkui_dist_components_TabsItem_TabsItem__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_TabsItem_TabsItem__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _vkontakte_vkui_dist_components_HorizontalScroll_HorizontalScroll__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/HorizontalScroll/HorizontalScroll */ "./node_modules/@vkontakte/vkui/dist/components/HorizontalScroll/HorizontalScroll.js");
+/* harmony import */ var _vkontakte_vkui_dist_components_HorizontalScroll_HorizontalScroll__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_HorizontalScroll_HorizontalScroll__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _vkontakte_vkui_dist_components_Group_Group__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/Group/Group */ "./node_modules/@vkontakte/vkui/dist/components/Group/Group.js");
+/* harmony import */ var _vkontakte_vkui_dist_components_Group_Group__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_Group_Group__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var _vkontakte_vkui_dist_components_Cell_Cell__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/Cell/Cell */ "./node_modules/@vkontakte/vkui/dist/components/Cell/Cell.js");
+/* harmony import */ var _vkontakte_vkui_dist_components_Cell_Cell__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_Cell_Cell__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var _vkontakte_vkui_dist_components_List_List__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/List/List */ "./node_modules/@vkontakte/vkui/dist/components/List/List.js");
+/* harmony import */ var _vkontakte_vkui_dist_components_List_List__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_List_List__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var _vkontakte_vkui_dist_components_Button_Button__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/Button/Button */ "./node_modules/@vkontakte/vkui/dist/components/Button/Button.js");
+/* harmony import */ var _vkontakte_vkui_dist_components_Button_Button__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_Button_Button__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var _components_TopItem__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../components/TopItem */ "./resources/js/components/TopItem.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_19__);
+/* harmony import */ var q__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! q */ "./node_modules/q/q.js");
+/* harmony import */ var q__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(q__WEBPACK_IMPORTED_MODULE_20__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -79761,6 +79910,9 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
+
 var osName = Object(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2__["platform"])();
 
 var Top =
@@ -79776,75 +79928,251 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Top).call(this, props));
     _this.state = {
       activeTab: 'all',
-      top: []
+      all: [],
+      allData: null,
+      friends: [],
+      friendsData: null,
+      groups: [],
+      groupsData: null
     };
     return _this;
   }
 
   _createClass(Top, [{
-    key: "top",
-    value: function top() {
-      this.props.items.map(function (item, index) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Cell_Cell__WEBPACK_IMPORTED_MODULE_13___default.a, {
-          before: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_TopItem__WEBPACK_IMPORTED_MODULE_16__["default"], {
-            num: index + 1,
-            imgUrl: item.url
-          }),
-          description: item.count
-        }, item.name);
+    key: "getAllData",
+    value: function getAllData(all_ids) {
+      var _this2 = this;
+
+      _vkontakte_vk_connect__WEBPACK_IMPORTED_MODULE_3___default.a.sendPromise("VKWebAppGetAuthToken", {
+        "app_id": 7160668,
+        "scope": "friends"
+      }).then(function (res) {
+        var token = res.access_token;
+        _vkontakte_vk_connect__WEBPACK_IMPORTED_MODULE_3___default.a.sendPromise("VKWebAppCallAPIMethod", {
+          "method": "users.get",
+          "request_id": "test-users-get",
+          "params": {
+            "user_ids": all_ids,
+            "fields": "photo_100",
+            "v": "5.102",
+            "access_token": token
+          }
+        }).then(function (res) {
+          var vk_list = {};
+          res.response.map(function (item) {
+            vk_list[item.id] = {
+              img_url: item.photo_100,
+              last_name: item.last_name,
+              first_name: item.first_name
+            };
+          });
+
+          _this2.setState({
+            allData: vk_list
+          });
+        });
       });
+    }
+  }, {
+    key: "getGroupsData",
+    value: function getGroupsData(groups_ids) {
+      var _this3 = this;
+
+      _vkontakte_vk_connect__WEBPACK_IMPORTED_MODULE_3___default.a.sendPromise("VKWebAppGetAuthToken", {
+        "app_id": 7160668,
+        "scope": "groups"
+      }).then(function (res) {
+        var token = res.access_token;
+        _vkontakte_vk_connect__WEBPACK_IMPORTED_MODULE_3___default.a.sendPromise("VKWebAppCallAPIMethod", {
+          "method": "groups.getById",
+          "request_id": "test-groups-get",
+          "params": {
+            "group_ids": groups_ids,
+            "v": "5.102",
+            "access_token": token
+          }
+        }).then(function (res) {
+          var groups_list = {};
+          res.response.map(function (item) {
+            groups_list[item.id] = {
+              img_url: item.photo_100,
+              name: item.name
+            };
+          });
+          console.log(groups_list);
+
+          _this3.setState({
+            groupsData: groups_list
+          });
+        });
+      });
+    }
+  }, {
+    key: "getTop",
+    value: function getTop(friends_ids) {
+      var _this4 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_19___default.a.post('/top', friends_ids).then(function (res) {
+        _this4.setState({
+          all: res.data.all
+        });
+
+        _this4.setState({
+          friends: res.data.friends
+        });
+
+        _this4.setState({
+          groups: res.data.groups
+        });
+
+        var all_ids = res.data.all.map(function (item) {
+          return item.vk_id;
+        });
+
+        _this4.getAllData(all_ids);
+
+        var groups_ids = res.data.groups.map(function (item) {
+          return item.group_id;
+        });
+
+        _this4.getGroupsData(groups_ids);
+      });
+    }
+  }, {
+    key: "getFriendsTop",
+    value: function getFriendsTop() {
+      var _this5 = this;
+
+      _vkontakte_vk_connect__WEBPACK_IMPORTED_MODULE_3___default.a.sendPromise("VKWebAppGetAuthToken", {
+        "app_id": 7160668,
+        "scope": "friends"
+      }).then(function (res) {
+        var token = res.access_token;
+        _vkontakte_vk_connect__WEBPACK_IMPORTED_MODULE_3___default.a.sendPromise("VKWebAppCallAPIMethod", {
+          "method": "friends.get",
+          "request_id": "test-friends-get",
+          "params": {
+            "fields": "photo_100",
+            "v": "5.102",
+            "access_token": token
+          }
+        }).then(function (res) {
+          var friends_list = {};
+          var friends_ids = res.response.items.map(function (item) {
+            friends_list[item.id] = {
+              img_url: item.photo_100,
+              last_name: item.last_name,
+              first_name: item.first_name
+            };
+            return item.id;
+          });
+
+          _this5.setState({
+            friendsData: friends_list
+          });
+
+          _this5.getTop(friends_ids);
+        });
+      });
+    }
+  }, {
+    key: "addToGroup",
+    value: function addToGroup() {
+      _vkontakte_vk_connect__WEBPACK_IMPORTED_MODULE_3___default.a.send("VKWebAppAddToCommunity", {});
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.getFriendsTop();
     }
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this6 = this;
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Panel_Panel__WEBPACK_IMPORTED_MODULE_3___default.a, {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Panel_Panel__WEBPACK_IMPORTED_MODULE_4___default.a, {
         id: this.props.id
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_PanelHeader_PanelHeader__WEBPACK_IMPORTED_MODULE_4___default.a, {
-        left: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_HeaderButton_HeaderButton__WEBPACK_IMPORTED_MODULE_5___default.a, {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_PanelHeader_PanelHeader__WEBPACK_IMPORTED_MODULE_5___default.a, {
+        left: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_HeaderButton_HeaderButton__WEBPACK_IMPORTED_MODULE_6___default.a, {
           onClick: this.props.go,
           "data-to": "home"
-        }, osName === _vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2__["IOS"] ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_icons_dist_28_chevron_back__WEBPACK_IMPORTED_MODULE_6___default.a, null) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_icons_dist_24_back__WEBPACK_IMPORTED_MODULE_7___default.a, null))
-      }, "\u0422\u043E\u043F"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_FixedLayout_FixedLayout__WEBPACK_IMPORTED_MODULE_8___default.a, {
+        }, osName === _vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2__["IOS"] ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_icons_dist_28_chevron_back__WEBPACK_IMPORTED_MODULE_7___default.a, null) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_icons_dist_24_back__WEBPACK_IMPORTED_MODULE_8___default.a, null))
+      }, "\u0422\u043E\u043F"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_FixedLayout_FixedLayout__WEBPACK_IMPORTED_MODULE_10___default.a, {
         vertical: "top"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Tabs_Tabs__WEBPACK_IMPORTED_MODULE_9___default.a, {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Tabs_Tabs__WEBPACK_IMPORTED_MODULE_11___default.a, {
         theme: "header",
         type: "buttons"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_HorizontalScroll_HorizontalScroll__WEBPACK_IMPORTED_MODULE_11___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_TabsItem_TabsItem__WEBPACK_IMPORTED_MODULE_10___default.a, {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_HorizontalScroll_HorizontalScroll__WEBPACK_IMPORTED_MODULE_13___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_TabsItem_TabsItem__WEBPACK_IMPORTED_MODULE_12___default.a, {
         onClick: function onClick() {
-          return _this2.setState({
+          return _this6.setState({
             activeTab: 'all'
           });
         },
         selected: this.state.activeTab === 'all'
-      }, "\u0412\u0441\u0435"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_TabsItem_TabsItem__WEBPACK_IMPORTED_MODULE_10___default.a, {
+      }, "\u0412\u0441\u0435"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_TabsItem_TabsItem__WEBPACK_IMPORTED_MODULE_12___default.a, {
         onClick: function onClick() {
-          return _this2.setState({
+          return _this6.setState({
             activeTab: 'friends'
           });
         },
         selected: this.state.activeTab === 'friends'
-      }, "\u0414\u0440\u0443\u0437\u044C\u044F"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_TabsItem_TabsItem__WEBPACK_IMPORTED_MODULE_10___default.a, {
+      }, "\u0414\u0440\u0443\u0437\u044C\u044F"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_TabsItem_TabsItem__WEBPACK_IMPORTED_MODULE_12___default.a, {
         onClick: function onClick() {
-          return _this2.setState({
+          return _this6.setState({
             activeTab: 'groups'
           });
         },
         selected: this.state.activeTab === 'groups'
-      }, "\u0421\u043E\u043E\u0431\u0449\u0435\u0441\u0442\u0432\u0430")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Group_Group__WEBPACK_IMPORTED_MODULE_12___default.a, {
+      }, "\u0421\u043E\u043E\u0431\u0449\u0435\u0441\u0442\u0432\u0430")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Group_Group__WEBPACK_IMPORTED_MODULE_14___default.a, {
         title: "image"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_List_List__WEBPACK_IMPORTED_MODULE_14___default.a, null, top)));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_List_List__WEBPACK_IMPORTED_MODULE_16___default.a, null, this.state.activeTab === "all" && this.state.allData && this.state.all.map(function (item, index) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Cell_Cell__WEBPACK_IMPORTED_MODULE_15___default.a, {
+          key: item.vk_id,
+          before: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_TopItem__WEBPACK_IMPORTED_MODULE_18__["default"], {
+            num: index + 1,
+            imgUrl: _this6.state.allData[item.vk_id].img_url,
+            href: "https://vk.com/id" + item.vk_id
+          }),
+          description: "Слонов: " + item.count
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, _this6.state.allData[item.vk_id].last_name, " ", _this6.state.allData[item.vk_id].first_name));
+      }), console.log(this.state.friends), this.state.activeTab === "friends" && this.state.friendsData && this.state.friends.map(function (item, index) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Cell_Cell__WEBPACK_IMPORTED_MODULE_15___default.a, {
+          key: item.vk_id,
+          before: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_TopItem__WEBPACK_IMPORTED_MODULE_18__["default"], {
+            num: index + 1,
+            imgUrl: _this6.state.friendsData[item.vk_id].img_url,
+            href: "https://vk.com/id" + item.vk_id
+          }),
+          description: "Слонов: " + item.count
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, _this6.state.friendsData[item.vk_id].last_name, " ", _this6.state.friendsData[item.vk_id].first_name));
+      }), this.state.activeTab === "groups" && this.state.groupsData && this.state.groups.map(function (item, index) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Cell_Cell__WEBPACK_IMPORTED_MODULE_15___default.a, {
+          key: item.group_id,
+          before: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_TopItem__WEBPACK_IMPORTED_MODULE_18__["default"], {
+            num: index + 1,
+            imgUrl: _this6.state.groupsData[item.group_id].img_url,
+            href: "https://vk.com/club" + item.group_id
+          }),
+          description: "Слонов: " + item.result
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, _this6.state.groupsData[item.group_id].name));
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_FixedLayout_FixedLayout__WEBPACK_IMPORTED_MODULE_10___default.a, {
+        vertical: "bottom"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Button_Button__WEBPACK_IMPORTED_MODULE_17___default.a, {
+        before: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_icons_dist_24_add__WEBPACK_IMPORTED_MODULE_9___default.a, null),
+        level: "primary",
+        size: "xl",
+        onClick: this.addToGroup
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0432 \u0441\u043E\u043E\u0431\u0449\u0435\u0441\u0442\u0432\u043E"))));
     }
   }]);
 
   return Top;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component); // Top.propTypes = {
+// 	id: PropTypes.string.isRequired,
+// 	go: PropTypes.func.isRequired,
+// };
 
-Top.propTypes = {
-  id: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string.isRequired,
-  go: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func.isRequired
-};
+
 /* harmony default export */ __webpack_exports__["default"] = (Top);
 
 /***/ }),
@@ -79867,8 +80195,8 @@ Top.propTypes = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! W:\VkApps\vk-elephant\resources\js\index.js */"./resources/js/index.js");
-module.exports = __webpack_require__(/*! W:\VkApps\vk-elephant\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! W:\VkApps\vk-app\resources\js\index.js */"./resources/js/index.js");
+module.exports = __webpack_require__(/*! W:\VkApps\vk-app\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

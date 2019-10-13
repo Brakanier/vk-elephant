@@ -13,51 +13,29 @@ const App = () => {
 	const [fetchedUser, setUser] = useState(null);
 	const [player, setPlayer] = useState(window.player);
 	const [popout, setPopout] = useState(<ScreenSpinner size='large' />);
+	const [authToken, setAuthToken] = useState(null);
+
 	useEffect(() => {
 		connect.subscribe(({ detail: { type, data }}) => {
-			if (type === 'VKWebAppUpdateConfig') {
+			switch (type) {
+			case 'VKWebAppUpdateConfig':
 				const schemeAttribute = document.createAttribute('scheme');
 				schemeAttribute.value = data.scheme ? data.scheme : 'client_light';
 				document.body.attributes.setNamedItem(schemeAttribute);
+				break;
+			case 'VKWebAppAccessTokenReceived':
+				setAuthToken(data.access_token);
+				break;
 			}
 		});
 		
 		async function fetchData() {
 			const user = await connect.sendPromise('VKWebAppGetUserInfo');
 			setUser(user);
-			// Axios.get('http://127.0.0.1:8000/')
-			// 	.then(res => {
-			// 		const player = res.data;
-			// 		setPlayer(player);
-			// 	})
 			setPopout(null);
 		}
 		fetchData();
 	}, []);
-
-	const getTop = () => {
-		connect.sendPromise("VKWebAppGetAuthToken", {"app_id": 7160668, "scope": "friends"})
-			.then(res => {
-				console.log(res.access_token);
-				let token = res.access_token;
-				
-				Axios.get('/top')
-					.then(res => {
-					console.log(res.data);
-					let user_ids = res.data.map((item, index) => {
-						return item.vk_id
-					});
-					connect.sendPromise("VKWebAppCallAPIMethod", {"method": "users.get", "request_id": "test-users-get", "params": {"user_ids": user_ids, "v":"5.102", "access_token": token}})
-						.then(res => {
-							console.log(res);
-						})
-					
-				})
-
-			})
-		
-		
-	}
 
 	const go = e => {
 		setActivePanel(e.currentTarget.dataset.to);

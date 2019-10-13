@@ -16,4 +16,5 @@ use App\Http\Controllers;
 //     return view('welcome');
 // });
 Route::get('/', 'AppController@index');
-Route::get('/top', 'AppController@top');
+Route::post('/top', 'AppController@top');
+Route::post('/story', 'AppController@story');
