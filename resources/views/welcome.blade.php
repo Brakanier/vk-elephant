@@ -9,7 +9,10 @@
             <link href="{{mix('css/app.css')}}" rel="stylesheet" type="text/css">
 	</head>
 	<body>
-            <div id="root"></div>
+			<div id="root"></div>
+			<script>
+			window.player = {!! $player !!};
+			</script>
             <script src="{{mix('js/index.js')}}" ></script>
 	</body>
 </html>

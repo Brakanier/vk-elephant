@@ -7,41 +7,42 @@ import Group from '@vkontakte/vkui/dist/components/Group/Group';
 import Cell from '@vkontakte/vkui/dist/components/Cell/Cell';
 import Div from '@vkontakte/vkui/dist/components/Div/Div';
 import Avatar from '@vkontakte/vkui/dist/components/Avatar/Avatar';
+import Icon28UsersOutline from '@vkontakte/icons/dist/28/users_outline';
+import Icon24MoneyCircle from '@vkontakte/icons/dist/24/money_circle';
+import elephant from '../img/elephant.png';
+import './Elephant.css';
 
-const Home = ({ id, go, fetchedUser }) => (
+const Home = ({ id, go, player }) => (
 	<Panel id={id}>
-		<PanelHeader>Example</PanelHeader>
-		{fetchedUser &&
-		<Group title="User Data Fetched with VK Connect">
-			<Cell
-				before={fetchedUser.photo_200 ? <Avatar src={fetchedUser.photo_200}/> : null}
-				description={fetchedUser.city && fetchedUser.city.title ? fetchedUser.city.title : ''}
-			>
-				{`${fetchedUser.first_name} ${fetchedUser.last_name}`}
-			</Cell>
-		</Group>}
+		<PanelHeader>Купи Слона!</PanelHeader>
 
-		<Group title="Navigation Example">
+			<img className="Elephant" src={elephant} alt="Elephant"/>
+			<h1 style={{textAlign: "center"}}>У вас слонов: {player.count}</h1>
+
+
 			<Div>
-				<Button size="xl" level="2" onClick={go} data-to="persik">
-					Show me the Persik, please
+				<Button before={<Icon28UsersOutline/>} level="overlay_primary" size="xl" onClick={go} data-to="top">
+					<strong>Топ</strong>
+				</Button>
+				
+			</Div>
+			<Div>
+				<Button before={<Icon24MoneyCircle/>} level="commerce" size="xl">
+					<strong>Купить слона</strong>
 				</Button>
 			</Div>
-		</Group>
+			<Div >
+				<Button style={{ background: '#232323', color: "white" }} level="overlay_primary" size="xl">
+					<strong>Поделиться в истории (+1 слон)</strong>
+				</Button>
+			</Div>
 	</Panel>
 );
 
 Home.propTypes = {
 	id: PropTypes.string.isRequired,
 	go: PropTypes.func.isRequired,
-	fetchedUser: PropTypes.shape({
-		photo_200: PropTypes.string,
-		first_name: PropTypes.string,
-		last_name: PropTypes.string,
-		city: PropTypes.shape({
-			title: PropTypes.string,
-		}),
-	}),
+	player: PropTypes.object.isRequired
 };
 
 export default Home;
