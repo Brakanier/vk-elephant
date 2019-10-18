@@ -154,7 +154,7 @@ class Top extends React.Component {
 				</FixedLayout>
 				<Group title="image">
 				<List>
-					{this.state.activeTab === "all" && this.state.all &&
+					{this.state.activeTab === "all" && this.state.allData && this.state.all &&
 						this.state.all.map((item, index) => {
 							return <Cell
 							key={item.vk_id}
@@ -171,7 +171,7 @@ class Top extends React.Component {
 							</Cell>;
 						})
 					}
-					{this.state.activeTab === "friends" && this.state.friends &&
+					{this.state.activeTab === "friends" && this.state.friendsData &&
 						this.state.friends.map((item, index) => {
 							return <Cell
 							key={item.vk_id}
@@ -189,7 +189,7 @@ class Top extends React.Component {
 						})
 						
 					}
-					{this.state.activeTab === "groups" && this.state.groups &&
+					{this.state.activeTab === "groups" && this.state.groupsData &&
 						this.state.groups.map((item, index) => {
 							return <Cell
 							key={item.group_id}
