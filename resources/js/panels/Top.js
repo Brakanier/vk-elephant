@@ -43,7 +43,7 @@ class Top extends React.Component {
 		connect.sendPromise("VKWebAppGetAuthToken", {"app_id": 7160668, "scope": "friends"})
 			.then(res => {
 				let token = res.access_token;
-				connect.sendPromise("VKWebAppCallAPIMethod", {"method": "users.get", "request_id": "test-users-get", "params": {"user_ids": all_ids, "fields": "photo_100" , "v":"5.102", "access_token": token}})
+				connect.sendPromise("VKWebAppCallAPIMethod", {"method": "users.get", "request_id": "test-users-get", "params": {"user_ids": all_ids, "fields": "photo_100" , "v":"5.102", "access_token": "a81d820ea81d820ea81d820e6da870c152aa81da81d820ef5847ad56e6918099b98d949"}})
 					.then(res => {
 						let vk_list = {};
 						res.response.map(item => {
@@ -61,7 +61,7 @@ class Top extends React.Component {
 		connect.sendPromise("VKWebAppGetAuthToken", {"app_id": 7160668, "scope": "groups"})
 			.then(res => {
 				let token = res.access_token;
-				connect.sendPromise("VKWebAppCallAPIMethod", {"method": "groups.getById", "request_id": "test-groups-get", "params": {"group_ids": groups_ids, "v":"5.102", "access_token": token}})
+				connect.sendPromise("VKWebAppCallAPIMethod", {"method": "groups.getById", "request_id": "test-groups-get", "params": {"group_ids": groups_ids, "v":"5.102", "access_token": "a81d820ea81d820ea81d820e6da870c152aa81da81d820ef5847ad56e6918099b98d949"}})
 					.then(res => {
 						let groups_list = {};
 						res.response.map(item => {
