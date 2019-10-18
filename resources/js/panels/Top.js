@@ -161,13 +161,13 @@ class Top extends React.Component {
 							before={
 								<TopItem
 									num={index+1}
-									imgUrl={this.state.allData[item.vk_id].img_url}
+									imgUrl={this.state.allData[item.vk_id].img_url ? this.state.allData[item.vk_id].img_url : ""}
 									href={"https://vk.com/id" + item.vk_id}>
 								</TopItem>
 								}
 							description={"Слонов: " + item.count}
 							>
-							<span>{this.state.allData[item.vk_id].last_name} {this.state.allData[item.vk_id].first_name}</span>
+							<span>{this.state.allData[item.vk_id].last_name ? this.state.allData[item.vk_id].last_name : item.vk_id} {this.state.allData[item.vk_id].first_name ? this.state.allData[item.vk_id].first_name : ""}</span>
 							</Cell>;
 						})
 					}
@@ -187,6 +187,7 @@ class Top extends React.Component {
 							<span>{this.state.friendsData[item.vk_id].last_name} {this.state.friendsData[item.vk_id].first_name}</span>
 							</Cell>;
 						})
+						
 					}
 					{this.state.activeTab === "groups" && this.state.groupsData &&
 						this.state.groups.map((item, index) => {
@@ -205,6 +206,8 @@ class Top extends React.Component {
 							</Cell>;
 						})
 					}
+					<Cell></Cell>
+					<Cell></Cell>
 				</List>
 				</Group>
 				<FixedLayout vertical="bottom">

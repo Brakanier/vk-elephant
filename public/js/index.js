@@ -80211,7 +80211,6 @@ function (_React$Component) {
               name: item.name
             };
           });
-          console.log(groups_list);
 
           _this3.setState({
             groupsData: groups_list
@@ -80347,7 +80346,7 @@ function (_React$Component) {
           }),
           description: "Слонов: " + item.count
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, _this6.state.allData[item.vk_id].last_name, " ", _this6.state.allData[item.vk_id].first_name));
-      }), console.log(this.state.friends), this.state.activeTab === "friends" && this.state.friendsData && this.state.friends.map(function (item, index) {
+      }), this.state.activeTab === "friends" && this.state.friendsData && this.state.friends.map(function (item, index) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Cell_Cell__WEBPACK_IMPORTED_MODULE_15___default.a, {
           key: item.vk_id,
           before: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_TopItem__WEBPACK_IMPORTED_MODULE_18__["default"], {
