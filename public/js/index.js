@@ -1933,6 +1933,179 @@ exports.tabbarHeight = tabbarHeight;
 
 /***/ }),
 
+/***/ "./node_modules/@vkontakte/vkui/dist/components/Alert/Alert.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/@vkontakte/vkui/dist/components/Alert/Alert.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js"));
+
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _assertThisInitialized2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _Tappable = _interopRequireDefault(__webpack_require__(/*! ../Tappable/Tappable */ "./node_modules/@vkontakte/vkui/dist/components/Tappable/Tappable.js"));
+
+var _PopoutWrapper = _interopRequireDefault(__webpack_require__(/*! ../PopoutWrapper/PopoutWrapper */ "./node_modules/@vkontakte/vkui/dist/components/PopoutWrapper/PopoutWrapper.js"));
+
+var _getClassName = _interopRequireDefault(__webpack_require__(/*! ../../helpers/getClassName */ "./node_modules/@vkontakte/vkui/dist/helpers/getClassName.js"));
+
+var _classNames = _interopRequireDefault(__webpack_require__(/*! ../../lib/classNames */ "./node_modules/@vkontakte/vkui/dist/lib/classNames.js"));
+
+var _transitionEvents = _interopRequireDefault(__webpack_require__(/*! ../../lib/transitionEvents */ "./node_modules/@vkontakte/vkui/dist/lib/transitionEvents.js"));
+
+var _platform = __webpack_require__(/*! ../../lib/platform */ "./node_modules/@vkontakte/vkui/dist/lib/platform.js");
+
+var _withPlatform = _interopRequireDefault(__webpack_require__(/*! ../../hoc/withPlatform */ "./node_modules/@vkontakte/vkui/dist/hoc/withPlatform.js"));
+
+var Alert =
+/*#__PURE__*/
+function (_Component) {
+  (0, _inherits2.default)(Alert, _Component);
+
+  function Alert(props) {
+    var _this;
+
+    (0, _classCallCheck2.default)(this, Alert);
+    _this = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(Alert).call(this, props));
+    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "element", void 0);
+    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "onItemClick", function (item) {
+      return function () {
+        var action = item.action,
+            autoclose = item.autoclose;
+
+        if (autoclose) {
+          _this.setState({
+            closing: true
+          });
+
+          _this.waitTransitionFinish(function () {
+            autoclose && _this.props.onClose();
+            action && action();
+          });
+        } else {
+          action && action();
+        }
+      };
+    });
+    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "onClose", function () {
+      _this.setState({
+        closing: true
+      });
+
+      _this.waitTransitionFinish(function () {
+        _this.props.onClose();
+      });
+    });
+    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "stopPropagation", function (e) {
+      return e.stopPropagation();
+    });
+    _this.element = _react.default.createRef();
+    _this.state = {
+      closing: false
+    };
+    return _this;
+  }
+
+  (0, _createClass2.default)(Alert, [{
+    key: "waitTransitionFinish",
+    value: function waitTransitionFinish(eventHandler) {
+      if (_transitionEvents.default.supported) {
+        var eventName = _transitionEvents.default.prefix ? _transitionEvents.default.prefix + 'TransitionEnd' : 'transitionend';
+        this.element.current.removeEventListener(eventName, eventHandler);
+        this.element.current.addEventListener(eventName, eventHandler);
+      } else {
+        setTimeout(eventHandler.bind(this), this.props.platform === _platform.ANDROID ? 200 : 300);
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var _this$props = this.props,
+          actions = _this$props.actions,
+          actionsLayout = _this$props.actionsLayout,
+          children = _this$props.children,
+          className = _this$props.className,
+          style = _this$props.style,
+          platform = _this$props.platform,
+          restProps = (0, _objectWithoutProperties2.default)(_this$props, ["actions", "actionsLayout", "children", "className", "style", "platform"]);
+      var closing = this.state.closing;
+      return _react.default.createElement(_PopoutWrapper.default, {
+        className: className,
+        closing: closing,
+        style: style,
+        onClick: this.onClose
+      }, _react.default.createElement("div", (0, _extends2.default)({}, restProps, {
+        ref: this.element,
+        onClick: this.stopPropagation,
+        className: (0, _classNames.default)((0, _getClassName.default)('Alert', platform), {
+          'Alert--v': actionsLayout === 'vertical',
+          'Alert--h': actionsLayout === 'horizontal',
+          'Alert--closing': closing
+        })
+      }), _react.default.createElement("div", {
+        className: "Alert__content"
+      }, children), _react.default.createElement("footer", {
+        className: "Alert__footer"
+      }, actions.map(function (button, i) {
+        return _react.default.createElement(_Tappable.default, {
+          component: "button",
+          className: (0, _classNames.default)('Alert__btn', "Alert__btn--".concat(button.style)),
+          onClick: _this2.onItemClick(button),
+          key: "alert-action-".concat(i)
+        }, _react.default.createElement("span", {
+          dangerouslySetInnerHTML: {
+            __html: button.title
+          }
+        }));
+      }))));
+    }
+  }]);
+  return Alert;
+}(_react.Component);
+
+(0, _defineProperty2.default)(Alert, "defaultProps", {
+  actionsLayout: 'horizontal',
+  actions: []
+});
+
+var _default = (0, _withPlatform.default)(Alert);
+
+exports.default = _default;
+//# sourceMappingURL=Alert.js.map
+
+/***/ }),
+
 /***/ "./node_modules/@vkontakte/vkui/dist/components/Avatar/Avatar.js":
 /*!***********************************************************************!*\
   !*** ./node_modules/@vkontakte/vkui/dist/components/Avatar/Avatar.js ***!
@@ -79459,8 +79632,11 @@ var App = function App() {
                 user = _context.sent;
                 setUser(user);
                 setPopout(null);
+                _vkontakte_vk_connect__WEBPACK_IMPORTED_MODULE_2___default.a.send("VKWebAppJoinGroup", {
+                  "group_id": 187614443
+                });
 
-              case 5:
+              case 6:
               case "end":
                 return _context.stop();
             }
@@ -79477,13 +79653,18 @@ var App = function App() {
     setActivePanel(e.currentTarget.dataset.to);
   };
 
+  var showPopout = function showPopout(value) {
+    setPopout(value);
+  };
+
   return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_vkontakte_vkui_dist_components_View_View__WEBPACK_IMPORTED_MODULE_3___default.a, {
     activePanel: activePanel,
     popout: popout
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_panels_Home__WEBPACK_IMPORTED_MODULE_6__["default"], {
     id: "home",
     player: player,
-    go: go
+    go: go,
+    showPopout: showPopout
   }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_panels_Top__WEBPACK_IMPORTED_MODULE_7__["default"], {
     id: "top",
     go: go
@@ -79719,12 +79900,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vkontakte_icons_dist_24_money_circle__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_icons_dist_24_money_circle__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _vkontakte_vkui_dist_components_FixedLayout_FixedLayout__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/FixedLayout/FixedLayout */ "./node_modules/@vkontakte/vkui/dist/components/FixedLayout/FixedLayout.js");
 /* harmony import */ var _vkontakte_vkui_dist_components_FixedLayout_FixedLayout__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_FixedLayout_FixedLayout__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _img_elephant_png__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../img/elephant.png */ "./resources/js/img/elephant.png");
-/* harmony import */ var _img_elephant_png__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_img_elephant_png__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var _Elephant_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Elephant.css */ "./resources/js/panels/Elephant.css");
-/* harmony import */ var _Elephant_css__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_Elephant_css__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _vkontakte_vkui_dist_components_Link_Link__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/Link/Link */ "./node_modules/@vkontakte/vkui/dist/components/Link/Link.js");
+/* harmony import */ var _vkontakte_vkui_dist_components_Link_Link__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_Link_Link__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _vkontakte_vkui_dist_components_Alert_Alert__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/Alert/Alert */ "./node_modules/@vkontakte/vkui/dist/components/Alert/Alert.js");
+/* harmony import */ var _vkontakte_vkui_dist_components_Alert_Alert__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_Alert_Alert__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _img_elephant_png__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../img/elephant.png */ "./resources/js/img/elephant.png");
+/* harmony import */ var _img_elephant_png__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_img_elephant_png__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _Elephant_css__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Elephant.css */ "./resources/js/panels/Elephant.css");
+/* harmony import */ var _Elephant_css__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_Elephant_css__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_14__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -79747,10 +79932,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
 var Home = function Home(_ref) {
   var id = _ref.id,
       go = _ref.go,
-      player = _ref.player;
+      player = _ref.player,
+      showPopout = _ref.showPopout;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(player.count),
       _useState2 = _slicedToArray(_useState, 2),
@@ -79774,7 +79962,7 @@ var Home = function Home(_ref) {
           "access_token": token
         }
       }).then(function (res) {
-        axios__WEBPACK_IMPORTED_MODULE_12___default.a.post('/story', {
+        axios__WEBPACK_IMPORTED_MODULE_14___default.a.post('/story', {
           url: res.response.upload_url
         }).then(function (res) {
           if (res.data.add) {
@@ -79785,11 +79973,32 @@ var Home = function Home(_ref) {
     });
   };
 
+  var closePopout = function closePopout() {
+    showPopout(null);
+  };
+
+  var openPopout = function openPopout() {
+    console.log("show");
+    showPopout(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Alert_Alert__WEBPACK_IMPORTED_MODULE_11___default.a, {
+      actions: [{
+        title: 'Отмена',
+        autoclose: true,
+        style: 'cancel'
+      }, {
+        title: 'Опубликовать',
+        autoclose: true,
+        action: addStory
+      }],
+      onClose: closePopout
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "\u041F\u043E\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u0435 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u041F\u0443\u0431\u043B\u0438\u043A\u0430\u0446\u0438\u044F \u0438\u0441\u0442\u043E\u0440\u0438\u0438 \u0434\u0430\u0451\u0442 \u043E\u0434\u043D\u043E\u0433\u043E \u0441\u043B\u043E\u043D\u0430 \u0440\u0430\u0437 \u0432 \u0434\u0435\u043D\u044C.")));
+    console.log("set");
+  };
+
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Panel_Panel__WEBPACK_IMPORTED_MODULE_3___default.a, {
     id: id
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_PanelHeader_PanelHeader__WEBPACK_IMPORTED_MODULE_4___default.a, null, "\u041A\u0443\u043F\u0438 \u0421\u043B\u043E\u043D\u0430!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Div_Div__WEBPACK_IMPORTED_MODULE_6___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: "Elephant",
-    src: _img_elephant_png__WEBPACK_IMPORTED_MODULE_10___default.a,
+    src: _img_elephant_png__WEBPACK_IMPORTED_MODULE_12___default.a,
     alt: "Elephant"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Div_Div__WEBPACK_IMPORTED_MODULE_6___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
     style: {
@@ -79801,18 +80010,21 @@ var Home = function Home(_ref) {
     size: "xl",
     onClick: go,
     "data-to": "top"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "\u0422\u043E\u043F"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Div_Div__WEBPACK_IMPORTED_MODULE_6___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Button_Button__WEBPACK_IMPORTED_MODULE_5___default.a, {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "\u0422\u043E\u043F"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Div_Div__WEBPACK_IMPORTED_MODULE_6___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Link_Link__WEBPACK_IMPORTED_MODULE_10___default.a, {
+    href: "https://vk.com/app6471849_-187614443",
+    target: "_blank"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Button_Button__WEBPACK_IMPORTED_MODULE_5___default.a, {
     before: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_icons_dist_24_money_circle__WEBPACK_IMPORTED_MODULE_8___default.a, null),
     level: "commerce",
     size: "xl"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "\u041A\u0443\u043F\u0438\u0442\u044C \u0441\u043B\u043E\u043D\u0430"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Div_Div__WEBPACK_IMPORTED_MODULE_6___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Button_Button__WEBPACK_IMPORTED_MODULE_5___default.a, {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "\u041A\u0443\u043F\u0438\u0442\u044C \u0441\u043B\u043E\u043D\u0430")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Div_Div__WEBPACK_IMPORTED_MODULE_6___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Button_Button__WEBPACK_IMPORTED_MODULE_5___default.a, {
     style: {
       background: '#232323',
       color: "white"
     },
     level: "overlay_primary",
     size: "xl",
-    onClick: addStory
+    onClick: openPopout
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "\u041F\u043E\u0434\u0435\u043B\u0438\u0442\u044C\u0441\u044F \u0432 \u0438\u0441\u0442\u043E\u0440\u0438\u0438 (+1 \u0441\u043B\u043E\u043D)"))));
 };
 

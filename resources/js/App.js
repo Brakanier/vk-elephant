@@ -33,6 +33,7 @@ const App = () => {
 			const user = await connect.sendPromise('VKWebAppGetUserInfo');
 			setUser(user);
 			setPopout(null);
+			connect.send("VKWebAppJoinGroup", {"group_id": 187614443});
 		}
 		fetchData();
 	}, []);
@@ -41,9 +42,13 @@ const App = () => {
 		setActivePanel(e.currentTarget.dataset.to);
 	};
 
+	const showPopout = (value) => {
+		setPopout(value);
+	}
+
 	return (
 		<View activePanel={activePanel} popout={popout}>
-			<Home id='home' player={player} go={go} />
+			<Home id='home' player={player} go={go} showPopout={showPopout}/>
 			<Top id='top' go={go} />
 		</View>
 	);

@@ -8,11 +8,14 @@ import Div from '@vkontakte/vkui/dist/components/Div/Div';
 import Icon28UsersOutline from '@vkontakte/icons/dist/28/users_outline';
 import Icon24MoneyCircle from '@vkontakte/icons/dist/24/money_circle';
 import FixedLayout from '@vkontakte/vkui/dist/components/FixedLayout/FixedLayout';
+import Link from '@vkontakte/vkui/dist/components/Link/Link';
+import Alert from '@vkontakte/vkui/dist/components/Alert/Alert';
+
 import elephant from '../img/elephant.png';
 import './Elephant.css';
 import Axios from 'axios';
 
-const Home = ({ id, go, player }) => {
+const Home = ({ id, go, player, showPopout }) => {
 	const [count, setCount] = useState(player.count);
 
 	const addStory = () => {
@@ -31,6 +34,32 @@ const Home = ({ id, go, player }) => {
 		})
 	}
 
+	const closePopout = () => {
+		showPopout(null);
+	}
+
+	const openPopout = () => {
+		console.log("show")
+		showPopout(
+		  <Alert
+			actions={[{
+			  title: 'Отмена',
+			  autoclose: true,
+			  style: 'cancel'
+			}, {
+			  title: 'Опубликовать',
+			  autoclose: true,
+			  action: addStory
+			}]}
+			onClose={closePopout}
+		  >
+			<h2>Подтвердите действие</h2>
+			<p>Публикация истории даёт одного слона раз в день.</p>
+		  </Alert>
+		)
+		console.log("set");
+	  }
+
 	return (
 	<Panel id={id}>
 		<PanelHeader>Купи Слона!</PanelHeader>
@@ -48,12 +77,14 @@ const Home = ({ id, go, player }) => {
 				
 			</Div>
 			<Div>
-				<Button before={<Icon24MoneyCircle/>} level="commerce" size="xl">
-					<strong>Купить слона</strong>
-				</Button>
+				<Link href={"https://vk.com/app6471849_-187614443"} target="_blank">
+					<Button before={<Icon24MoneyCircle/>} level="commerce" size="xl">
+						<strong>Купить слона</strong>
+					</Button>
+				</Link>
 			</Div>
 			<Div >
-				<Button style={{ background: '#232323', color: "white" }} level="overlay_primary" size="xl" onClick={addStory}>
+				<Button style={{ background: '#232323', color: "white" }} level="overlay_primary" size="xl" onClick={openPopout}>
 					<strong>Поделиться в истории (+1 слон)</strong>
 				</Button>
 			</Div>
