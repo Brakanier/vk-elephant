@@ -70,7 +70,6 @@ class Top extends React.Component {
 								name: item.name,
 							}
 						})
-						console.log(groups_list);
 						this.setState({ groupsData: groups_list });
 					})
 			})
@@ -172,7 +171,6 @@ class Top extends React.Component {
 							</Cell>;
 						})
 					}
-					{console.log(this.state.friends)}
 					{this.state.activeTab === "friends" && this.state.friendsData &&
 						this.state.friends.map((item, index) => {
 							return <Cell

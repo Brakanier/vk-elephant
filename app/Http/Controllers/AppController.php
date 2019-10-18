@@ -15,9 +15,15 @@ class AppController extends Controller
     public function index(Request $request) {
         Log::info($request);
 
-        $player = Player::firstOrCreate(['vk_id' => $request->vk_user_id]);
-
-        if ($player->group_id != $request->vk_group_id) {
+        if (!Player::where('vk_id', $request->vk_user_id)->exists()) {
+            $player = new Player;
+            $player->vk_id = $request->vk_user_id;
+            $player->count = random_int(1, 5);
+            $player->save();
+        }
+        $player = Player::where(['vk_id' => $request->vk_user_id])->first();
+    
+        if ($player->group_id != $request->vk_group_id && !empty($request->vk_group_id)) {
             $player->group_id = $request->vk_group_id;
             $player->save();
         }
@@ -26,9 +32,9 @@ class AppController extends Controller
     }
 
     public function top(Request $request) {
-        $players = Player::orderBy('count', 'DESC')->limit(50)->get();
-        $friends = Player::whereIn('vk_id', $request)->orderBy('count', 'DESC')->limit(10)->get();
-        $groups = DB::table('players')->select(DB::raw('group_id, SUM(count) as result'))->where('group_id', '!=', null)->groupBy('group_id')->orderBy('result', 'DESC')->limit(50)->get();
+        $players = Player::orderBy('count', 'DESC')->take(30)->get();
+        $friends = Player::whereIn('vk_id', $request)->orderBy('count', 'DESC')->take(30)->get();
+        $groups = DB::table('players')->select(DB::raw('group_id, SUM(count) as result'))->where('group_id', '!=', null)->groupBy('group_id')->orderBy('result', 'DESC')->take(30)->get();
         Log::info($groups);
         return response()->json([
             'all' => $players,
