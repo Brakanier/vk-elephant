@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Player;
+use Log;
 
 class StoryFalse extends Command
 {
@@ -39,5 +40,6 @@ class StoryFalse extends Command
     public function handle()
     {
         Player::where('story', true)->update(['story' => false]);
+        Log::info('RUN STORY FALSE');
     }
 }

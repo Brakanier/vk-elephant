@@ -40,38 +40,30 @@ class Top extends React.Component {
 		};
 	}
 	getAllData(all_ids) {
-		connect.sendPromise("VKWebAppGetAuthToken", {"app_id": 7160668, "scope": "friends"})
+		connect.sendPromise("VKWebAppCallAPIMethod", {"method": "users.get", "request_id": "test-users-get", "params": {"user_ids": all_ids.join(), "fields": "photo_100" , "v":"5.102", "access_token": "a81d820ea81d820ea81d820e6da870c152aa81da81d820ef5847ad56e6918099b98d949"}})
 			.then(res => {
-				let token = res.access_token;
-				connect.sendPromise("VKWebAppCallAPIMethod", {"method": "users.get", "request_id": "test-users-get", "params": {"user_ids": all_ids.join(), "fields": "photo_100" , "v":"5.102", "access_token": "a81d820ea81d820ea81d820e6da870c152aa81da81d820ef5847ad56e6918099b98d949"}})
-					.then(res => {
-						let vk_list = {};
-						res.response.map(item => {
-							vk_list[item.id] = {
-								img_url: item.photo_100,
-								last_name: item.last_name,
-								first_name: item.first_name
-							}
-						})
-						this.setState({ allData: vk_list });
-					})
+				let vk_list = {};
+				res.response.map(item => {
+					vk_list[item.id] = {
+						img_url: item.photo_100,
+						last_name: item.last_name,
+						first_name: item.first_name
+					}
+				})
+				this.setState({ allData: vk_list });
 			})
 	};
 	getGroupsData(groups_ids) {
-		connect.sendPromise("VKWebAppGetAuthToken", {"app_id": 7160668, "scope": "groups"})
+		connect.sendPromise("VKWebAppCallAPIMethod", {"method": "groups.getById", "request_id": "test-groups-get", "params": {"group_ids": groups_ids.join(), "v":"5.102", "access_token": "a81d820ea81d820ea81d820e6da870c152aa81da81d820ef5847ad56e6918099b98d949"}})
 			.then(res => {
-				let token = res.access_token;
-				connect.sendPromise("VKWebAppCallAPIMethod", {"method": "groups.getById", "request_id": "test-groups-get", "params": {"group_ids": groups_ids.join(), "v":"5.102", "access_token": "a81d820ea81d820ea81d820e6da870c152aa81da81d820ef5847ad56e6918099b98d949"}})
-					.then(res => {
-						let groups_list = {};
-						res.response.map(item => {
-							groups_list[item.id] = {
-								img_url: item.photo_100,
-								name: item.name,
-							}
-						})
-						this.setState({ groupsData: groups_list });
-					})
+				let groups_list = {};
+				res.response.map(item => {
+					groups_list[item.id] = {
+						img_url: item.photo_100,
+						name: item.name,
+					}
+				})
+				this.setState({ groupsData: groups_list });
 			})
 	};
 	getTop(friends_ids) {
@@ -154,7 +146,7 @@ class Top extends React.Component {
 				</FixedLayout>
 				<Group title="image">
 				<List>
-					{this.state.activeTab === "all" && this.state.allData && this.state.all &&
+					{this.state.activeTab === "all" && this.state.allData &&
 						this.state.all.map((item, index) => {
 							return <Cell
 							key={item.vk_id}

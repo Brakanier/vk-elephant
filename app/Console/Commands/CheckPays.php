@@ -67,8 +67,6 @@ class CheckPays extends Command
                 }
             }
         }
-        //Log::info(print_r($json));
-        
-        //Log::info();
+        Log::info('RUN CHECK PAYS');
     }
 }

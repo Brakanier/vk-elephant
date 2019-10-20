@@ -32,9 +32,9 @@ class AppController extends Controller
     }
 
     public function top(Request $request) {
-        $players = Player::orderBy('count', 'DESC')->take(30)->get();
-        $friends = Player::whereIn('vk_id', $request)->orderBy('count', 'DESC')->take(30)->get();
-        $groups = DB::table('players')->select(DB::raw('group_id, SUM(count) as result'))->where('group_id', '!=', null)->groupBy('group_id')->orderBy('result', 'DESC')->take(30)->get();
+        $players = Player::orderBy('count', 'DESC')->take(50)->get();
+        $friends = Player::whereIn('vk_id', $request)->orderBy('count', 'DESC')->take(50)->get();
+        $groups = DB::table('players')->select(DB::raw('group_id, SUM(count) as result'))->where('group_id', '!=', null)->groupBy('group_id')->orderBy('result', 'DESC')->take(50)->get();
         Log::info($groups);
         return response()->json([
             'all' => $players,

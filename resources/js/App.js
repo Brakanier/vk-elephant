@@ -32,8 +32,13 @@ const App = () => {
 		async function fetchData() {
 			const user = await connect.sendPromise('VKWebAppGetUserInfo');
 			setUser(user);
+			console.log(user);
+			const isMember = await connect.sendPromise("VKWebAppCallAPIMethod", {"method": "groups.isMember", "request_id": "test_is_member", "params": {"group_id": "187614443", "user_id": user.id, "v":"5.102", "access_token": "a81d820ea81d820ea81d820e6da870c152aa81da81d820ef5847ad56e6918099b98d949"}})
+			console.log(isMember);
 			setPopout(null);
-			connect.send("VKWebAppJoinGroup", {"group_id": 187614443});
+			if (isMember.response == 0) {
+				connect.send("VKWebAppJoinGroup", {"group_id": 187614443});
+			}
 		}
 		fetchData();
 	}, []);

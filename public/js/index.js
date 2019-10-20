@@ -79620,7 +79620,7 @@ var App = function App() {
       _fetchData = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var user;
+        var user, isMember;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -79631,12 +79631,31 @@ var App = function App() {
               case 2:
                 user = _context.sent;
                 setUser(user);
-                setPopout(null);
-                _vkontakte_vk_connect__WEBPACK_IMPORTED_MODULE_2___default.a.send("VKWebAppJoinGroup", {
-                  "group_id": 187614443
+                console.log(user);
+                _context.next = 7;
+                return _vkontakte_vk_connect__WEBPACK_IMPORTED_MODULE_2___default.a.sendPromise("VKWebAppCallAPIMethod", {
+                  "method": "groups.isMember",
+                  "request_id": "test_is_member",
+                  "params": {
+                    "group_id": "187614443",
+                    "user_id": user.id,
+                    "v": "5.102",
+                    "access_token": "a81d820ea81d820ea81d820e6da870c152aa81da81d820ef5847ad56e6918099b98d949"
+                  }
                 });
 
-              case 6:
+              case 7:
+                isMember = _context.sent;
+                console.log(isMember);
+                setPopout(null);
+
+                if (isMember.response == 0) {
+                  _vkontakte_vk_connect__WEBPACK_IMPORTED_MODULE_2___default.a.send("VKWebAppJoinGroup", {
+                    "group_id": 187614443
+                  });
+                }
+
+              case 11:
               case "end":
                 return _context.stop();
             }
@@ -80155,33 +80174,27 @@ function (_React$Component) {
     value: function getAllData(all_ids) {
       var _this2 = this;
 
-      _vkontakte_vk_connect__WEBPACK_IMPORTED_MODULE_3___default.a.sendPromise("VKWebAppGetAuthToken", {
-        "app_id": 7160668,
-        "scope": "friends"
+      _vkontakte_vk_connect__WEBPACK_IMPORTED_MODULE_3___default.a.sendPromise("VKWebAppCallAPIMethod", {
+        "method": "users.get",
+        "request_id": "test-users-get",
+        "params": {
+          "user_ids": all_ids.join(),
+          "fields": "photo_100",
+          "v": "5.102",
+          "access_token": "a81d820ea81d820ea81d820e6da870c152aa81da81d820ef5847ad56e6918099b98d949"
+        }
       }).then(function (res) {
-        var token = res.access_token;
-        _vkontakte_vk_connect__WEBPACK_IMPORTED_MODULE_3___default.a.sendPromise("VKWebAppCallAPIMethod", {
-          "method": "users.get",
-          "request_id": "test-users-get",
-          "params": {
-            "user_ids": all_ids,
-            "fields": "photo_100",
-            "v": "5.102",
-            "access_token": token
-          }
-        }).then(function (res) {
-          var vk_list = {};
-          res.response.map(function (item) {
-            vk_list[item.id] = {
-              img_url: item.photo_100,
-              last_name: item.last_name,
-              first_name: item.first_name
-            };
-          });
+        var vk_list = {};
+        res.response.map(function (item) {
+          vk_list[item.id] = {
+            img_url: item.photo_100,
+            last_name: item.last_name,
+            first_name: item.first_name
+          };
+        });
 
-          _this2.setState({
-            allData: vk_list
-          });
+        _this2.setState({
+          allData: vk_list
         });
       });
     }
@@ -80190,31 +80203,25 @@ function (_React$Component) {
     value: function getGroupsData(groups_ids) {
       var _this3 = this;
 
-      _vkontakte_vk_connect__WEBPACK_IMPORTED_MODULE_3___default.a.sendPromise("VKWebAppGetAuthToken", {
-        "app_id": 7160668,
-        "scope": "groups"
+      _vkontakte_vk_connect__WEBPACK_IMPORTED_MODULE_3___default.a.sendPromise("VKWebAppCallAPIMethod", {
+        "method": "groups.getById",
+        "request_id": "test-groups-get",
+        "params": {
+          "group_ids": groups_ids.join(),
+          "v": "5.102",
+          "access_token": "a81d820ea81d820ea81d820e6da870c152aa81da81d820ef5847ad56e6918099b98d949"
+        }
       }).then(function (res) {
-        var token = res.access_token;
-        _vkontakte_vk_connect__WEBPACK_IMPORTED_MODULE_3___default.a.sendPromise("VKWebAppCallAPIMethod", {
-          "method": "groups.getById",
-          "request_id": "test-groups-get",
-          "params": {
-            "group_ids": groups_ids,
-            "v": "5.102",
-            "access_token": token
-          }
-        }).then(function (res) {
-          var groups_list = {};
-          res.response.map(function (item) {
-            groups_list[item.id] = {
-              img_url: item.photo_100,
-              name: item.name
-            };
-          });
+        var groups_list = {};
+        res.response.map(function (item) {
+          groups_list[item.id] = {
+            img_url: item.photo_100,
+            name: item.name
+          };
+        });
 
-          _this3.setState({
-            groupsData: groups_list
-          });
+        _this3.setState({
+          groupsData: groups_list
         });
       });
     }
@@ -80341,11 +80348,11 @@ function (_React$Component) {
           key: item.vk_id,
           before: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_TopItem__WEBPACK_IMPORTED_MODULE_18__["default"], {
             num: index + 1,
-            imgUrl: _this6.state.allData[item.vk_id].img_url,
+            imgUrl: _this6.state.allData[item.vk_id].img_url ? _this6.state.allData[item.vk_id].img_url : "",
             href: "https://vk.com/id" + item.vk_id
           }),
           description: "Слонов: " + item.count
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, _this6.state.allData[item.vk_id].last_name, " ", _this6.state.allData[item.vk_id].first_name));
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, _this6.state.allData[item.vk_id].last_name ? _this6.state.allData[item.vk_id].last_name : item.vk_id, " ", _this6.state.allData[item.vk_id].first_name ? _this6.state.allData[item.vk_id].first_name : ""));
       }), this.state.activeTab === "friends" && this.state.friendsData && this.state.friends.map(function (item, index) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Cell_Cell__WEBPACK_IMPORTED_MODULE_15___default.a, {
           key: item.vk_id,
@@ -80366,7 +80373,7 @@ function (_React$Component) {
           }),
           description: "Слонов: " + item.result
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, _this6.state.groupsData[item.group_id].name));
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_FixedLayout_FixedLayout__WEBPACK_IMPORTED_MODULE_10___default.a, {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Cell_Cell__WEBPACK_IMPORTED_MODULE_15___default.a, null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Cell_Cell__WEBPACK_IMPORTED_MODULE_15___default.a, null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_FixedLayout_FixedLayout__WEBPACK_IMPORTED_MODULE_10___default.a, {
         vertical: "bottom"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Button_Button__WEBPACK_IMPORTED_MODULE_17___default.a, {
         before: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_icons_dist_24_add__WEBPACK_IMPORTED_MODULE_9___default.a, null),
