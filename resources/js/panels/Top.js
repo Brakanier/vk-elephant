@@ -16,6 +16,8 @@ import Group from '@vkontakte/vkui/dist/components/Group/Group';
 import Cell from '@vkontakte/vkui/dist/components/Cell/Cell';
 import List from '@vkontakte/vkui/dist/components/List/List';
 import Button from '@vkontakte/vkui/dist/components/Button/Button';
+import ScreenSpinner from '@vkontakte/vkui/dist/components/ScreenSpinner/ScreenSpinner';
+import Div from '@vkontakte/vkui/dist/components/Div/Div';
 
 import TopItem from '../components/TopItem';
 
@@ -80,6 +82,7 @@ class Top extends React.Component {
 					return item.group_id
 				})
 				this.getGroupsData(groups_ids);
+				this.props.showPopout(null);
 			})
 	};
 	getFriendsTop() {
@@ -108,6 +111,7 @@ class Top extends React.Component {
 	}
 	
 	componentDidMount() {
+		this.props.showPopout(<ScreenSpinner size='large' />);
 		this.getFriendsTop();
 	};
 	render () {
@@ -198,8 +202,8 @@ class Top extends React.Component {
 							</Cell>;
 						})
 					}
-					<Cell></Cell>
-					<Cell></Cell>
+					<Div></Div>
+					<Div></Div>
 				</List>
 				</Group>
 				<FixedLayout vertical="bottom">

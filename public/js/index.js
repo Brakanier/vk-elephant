@@ -79686,7 +79686,8 @@ var App = function App() {
     showPopout: showPopout
   }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_panels_Top__WEBPACK_IMPORTED_MODULE_7__["default"], {
     id: "top",
-    go: go
+    go: go,
+    showPopout: showPopout
   }));
 };
 
@@ -80100,11 +80101,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vkontakte_vkui_dist_components_List_List__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_List_List__WEBPACK_IMPORTED_MODULE_16__);
 /* harmony import */ var _vkontakte_vkui_dist_components_Button_Button__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/Button/Button */ "./node_modules/@vkontakte/vkui/dist/components/Button/Button.js");
 /* harmony import */ var _vkontakte_vkui_dist_components_Button_Button__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_Button_Button__WEBPACK_IMPORTED_MODULE_17__);
-/* harmony import */ var _components_TopItem__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../components/TopItem */ "./resources/js/components/TopItem.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_19__);
-/* harmony import */ var q__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! q */ "./node_modules/q/q.js");
-/* harmony import */ var q__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(q__WEBPACK_IMPORTED_MODULE_20__);
+/* harmony import */ var _vkontakte_vkui_dist_components_ScreenSpinner_ScreenSpinner__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/ScreenSpinner/ScreenSpinner */ "./node_modules/@vkontakte/vkui/dist/components/ScreenSpinner/ScreenSpinner.js");
+/* harmony import */ var _vkontakte_vkui_dist_components_ScreenSpinner_ScreenSpinner__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_ScreenSpinner_ScreenSpinner__WEBPACK_IMPORTED_MODULE_18__);
+/* harmony import */ var _vkontakte_vkui_dist_components_Div_Div__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/Div/Div */ "./node_modules/@vkontakte/vkui/dist/components/Div/Div.js");
+/* harmony import */ var _vkontakte_vkui_dist_components_Div_Div__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_Div_Div__WEBPACK_IMPORTED_MODULE_19__);
+/* harmony import */ var _components_TopItem__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../components/TopItem */ "./resources/js/components/TopItem.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_21___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_21__);
+/* harmony import */ var q__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! q */ "./node_modules/q/q.js");
+/* harmony import */ var q__WEBPACK_IMPORTED_MODULE_22___default = /*#__PURE__*/__webpack_require__.n(q__WEBPACK_IMPORTED_MODULE_22__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -80122,6 +80127,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
 
 
 
@@ -80230,7 +80237,7 @@ function (_React$Component) {
     value: function getTop(friends_ids) {
       var _this4 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_19___default.a.post('/top', friends_ids).then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_21___default.a.post('/top', friends_ids).then(function (res) {
         _this4.setState({
           all: res.data.all
         });
@@ -80254,6 +80261,8 @@ function (_React$Component) {
         });
 
         _this4.getGroupsData(groups_ids);
+
+        _this4.props.showPopout(null);
       });
     }
   }, {
@@ -80301,6 +80310,9 @@ function (_React$Component) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
+      this.props.showPopout(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_ScreenSpinner_ScreenSpinner__WEBPACK_IMPORTED_MODULE_18___default.a, {
+        size: "large"
+      }));
       this.getFriendsTop();
     }
   }, {
@@ -80346,7 +80358,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_List_List__WEBPACK_IMPORTED_MODULE_16___default.a, null, this.state.activeTab === "all" && this.state.allData && this.state.all.map(function (item, index) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Cell_Cell__WEBPACK_IMPORTED_MODULE_15___default.a, {
           key: item.vk_id,
-          before: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_TopItem__WEBPACK_IMPORTED_MODULE_18__["default"], {
+          before: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_TopItem__WEBPACK_IMPORTED_MODULE_20__["default"], {
             num: index + 1,
             imgUrl: _this6.state.allData[item.vk_id].img_url ? _this6.state.allData[item.vk_id].img_url : "",
             href: "https://vk.com/id" + item.vk_id
@@ -80356,7 +80368,7 @@ function (_React$Component) {
       }), this.state.activeTab === "friends" && this.state.friendsData && this.state.friends.map(function (item, index) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Cell_Cell__WEBPACK_IMPORTED_MODULE_15___default.a, {
           key: item.vk_id,
-          before: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_TopItem__WEBPACK_IMPORTED_MODULE_18__["default"], {
+          before: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_TopItem__WEBPACK_IMPORTED_MODULE_20__["default"], {
             num: index + 1,
             imgUrl: _this6.state.friendsData[item.vk_id].img_url,
             href: "https://vk.com/id" + item.vk_id
@@ -80366,14 +80378,14 @@ function (_React$Component) {
       }), this.state.activeTab === "groups" && this.state.groupsData && this.state.groups.map(function (item, index) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Cell_Cell__WEBPACK_IMPORTED_MODULE_15___default.a, {
           key: item.group_id,
-          before: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_TopItem__WEBPACK_IMPORTED_MODULE_18__["default"], {
+          before: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_TopItem__WEBPACK_IMPORTED_MODULE_20__["default"], {
             num: index + 1,
             imgUrl: _this6.state.groupsData[item.group_id].img_url,
             href: "https://vk.com/club" + item.group_id
           }),
           description: "Слонов: " + item.result
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, _this6.state.groupsData[item.group_id].name));
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Cell_Cell__WEBPACK_IMPORTED_MODULE_15___default.a, null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Cell_Cell__WEBPACK_IMPORTED_MODULE_15___default.a, null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_FixedLayout_FixedLayout__WEBPACK_IMPORTED_MODULE_10___default.a, {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Div_Div__WEBPACK_IMPORTED_MODULE_19___default.a, null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Div_Div__WEBPACK_IMPORTED_MODULE_19___default.a, null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_FixedLayout_FixedLayout__WEBPACK_IMPORTED_MODULE_10___default.a, {
         vertical: "bottom"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Button_Button__WEBPACK_IMPORTED_MODULE_17___default.a, {
         before: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_icons_dist_24_add__WEBPACK_IMPORTED_MODULE_9___default.a, null),

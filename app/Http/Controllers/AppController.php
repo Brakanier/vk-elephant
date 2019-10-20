@@ -84,4 +84,25 @@ class AppController extends Controller
             'add' => $add,
         ]);
     }
+
+    private function createImageForStory($count) {
+        $image_path = "story.jpg"; //Путь к изображению
+
+        $file_new = "story_user.jpg"; //Путь к изображению
+            
+        $img = imagecreatefromjpeg($image_path); // создаём новое изображение из файла
+            
+        $font = "src/font/arial.ttf"; // путь к шрифту
+        $font_size = 70; // размер шрифта общий
+        $color = imageColorAllocate($img, 255, 255, 255); //Цвет шрифта
+            
+        $center = 540;
+        $text = 'test';
+            
+        $box = imagettfbbox($font_size, 0, $font, $text);
+        $left = $center-round(($box[2]-$box[0])/2);
+        imagettftext($img, $font_size, 0, $left, 400, $color, $font, $text);
+            
+        imagepng($img, $file_new);
+    }
 }
