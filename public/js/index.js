@@ -79536,12 +79536,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vkontakte_vkui_dist_components_View_View__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_View_View__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _vkontakte_vkui_dist_components_ScreenSpinner_ScreenSpinner__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/ScreenSpinner/ScreenSpinner */ "./node_modules/@vkontakte/vkui/dist/components/ScreenSpinner/ScreenSpinner.js");
 /* harmony import */ var _vkontakte_vkui_dist_components_ScreenSpinner_ScreenSpinner__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_ScreenSpinner_ScreenSpinner__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _vkontakte_vkui_dist_vkui_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @vkontakte/vkui/dist/vkui.css */ "./node_modules/@vkontakte/vkui/dist/vkui.css");
-/* harmony import */ var _vkontakte_vkui_dist_vkui_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_vkui_css__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _panels_Home__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./panels/Home */ "./resources/js/panels/Home.js");
-/* harmony import */ var _panels_Top__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./panels/Top */ "./resources/js/panels/Top.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _vkontakte_vkui_dist_components_Alert_Alert__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @vkontakte/vkui/dist/components/Alert/Alert */ "./node_modules/@vkontakte/vkui/dist/components/Alert/Alert.js");
+/* harmony import */ var _vkontakte_vkui_dist_components_Alert_Alert__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_components_Alert_Alert__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _vkontakte_vkui_dist_vkui_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @vkontakte/vkui/dist/vkui.css */ "./node_modules/@vkontakte/vkui/dist/vkui.css");
+/* harmony import */ var _vkontakte_vkui_dist_vkui_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_vkui_css__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _panels_Home__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./panels/Home */ "./resources/js/panels/Home.js");
+/* harmony import */ var _panels_Top__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./panels/Top */ "./resources/js/panels/Top.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_9__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -79555,6 +79557,7 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -79650,9 +79653,18 @@ var App = function App() {
                 setPopout(null);
 
                 if (isMember.response == 0) {
-                  _vkontakte_vk_connect__WEBPACK_IMPORTED_MODULE_2___default.a.send("VKWebAppJoinGroup", {
-                    "group_id": 187614443
-                  });
+                  setPopout(react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_vkontakte_vkui_dist_components_Alert_Alert__WEBPACK_IMPORTED_MODULE_5___default.a, {
+                    actions: [{
+                      title: 'Нет',
+                      autoclose: true,
+                      style: 'cancel'
+                    }, {
+                      title: 'Да',
+                      autoclose: true,
+                      action: goSubscribe
+                    }],
+                    onClose: closePopout
+                  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", null, "\u041F\u043E\u0434\u0434\u0435\u0440\u0436\u0430\u0442\u044C \u0440\u0430\u0437\u0440\u0430\u0431\u043E\u0442\u0447\u0438\u043A\u043E\u0432?"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "\u0412\u044B \u043C\u043E\u0436\u0435\u0442\u0435 \u043F\u043E\u0434\u0434\u0435\u0440\u0436\u0430\u0442\u044C \u0440\u0430\u0437\u0440\u0430\u0431\u043E\u0442\u0447\u0438\u043A\u043E\u0432, \u043F\u043E\u0434\u043F\u0438\u0441\u0430\u0432\u0448\u0438c\u044C \u043D\u0430 \u0441\u043E\u043E\u0431\u0449\u0435\u0441\u0442\u0432\u043E Clover Team")));
                 }
 
               case 11:
@@ -79676,15 +79688,25 @@ var App = function App() {
     setPopout(value);
   };
 
+  var closePopout = function closePopout() {
+    setPopout(null);
+  };
+
+  var goSubscribe = function goSubscribe() {
+    _vkontakte_vk_connect__WEBPACK_IMPORTED_MODULE_2___default.a.send("VKWebAppJoinGroup", {
+      "group_id": 187614443
+    });
+  };
+
   return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_vkontakte_vkui_dist_components_View_View__WEBPACK_IMPORTED_MODULE_3___default.a, {
     activePanel: activePanel,
     popout: popout
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_panels_Home__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_panels_Home__WEBPACK_IMPORTED_MODULE_7__["default"], {
     id: "home",
     player: player,
     go: go,
     showPopout: showPopout
-  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_panels_Top__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_panels_Top__WEBPACK_IMPORTED_MODULE_8__["default"], {
     id: "top",
     go: go,
     showPopout: showPopout

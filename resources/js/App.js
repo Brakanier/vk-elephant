@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import connect from '@vkontakte/vk-connect';
 import View from '@vkontakte/vkui/dist/components/View/View';
 import ScreenSpinner from '@vkontakte/vkui/dist/components/ScreenSpinner/ScreenSpinner';
+import Alert from '@vkontakte/vkui/dist/components/Alert/Alert';
 import '@vkontakte/vkui/dist/vkui.css';
+
 
 import Home from './panels/Home';
 import Top from './panels/Top';
@@ -37,7 +39,21 @@ const App = () => {
 			console.log(isMember);
 			setPopout(null);
 			if (isMember.response == 0) {
-				connect.send("VKWebAppJoinGroup", {"group_id": 187614443});
+				setPopout(<Alert
+					actions={[{
+					  title: 'Нет',
+					  autoclose: true,
+					  style: 'cancel'
+					}, {
+					  title: 'Да',
+					  autoclose: true,
+					  action: goSubscribe
+					}]}
+					onClose={closePopout}
+				  >
+					<h2>Поддержать разработчиков?</h2>
+					<p>Вы можете поддержать разработчиков, подписавшиcь на сообщество Clover Team</p>
+				  </Alert>);
 			}
 		}
 		fetchData();
@@ -49,6 +65,14 @@ const App = () => {
 
 	const showPopout = (value) => {
 		setPopout(value);
+	}
+
+	const closePopout = () => {
+		setPopout(null);
+	}
+
+	const goSubscribe = () => {
+		connect.send("VKWebAppJoinGroup", {"group_id": 187614443});
 	}
 
 	return (
