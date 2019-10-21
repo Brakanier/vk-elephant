@@ -100,6 +100,16 @@ class Top extends React.Component {
 							}
 							return item.id;
 						});
+
+						console.log(this.props.player);
+						console.log(this.props.user);
+
+						friends_ids.push(this.props.user.id);
+						friends_list[this.props.user.id] = {
+							img_url: this.props.user.photo_100,
+							last_name: this.props.user.last_name,
+							first_name: this.props.user.first_name
+						}
 						this.setState({ friendsData: friends_list });
 						this.getTop(friends_ids);
 					})
@@ -156,6 +166,7 @@ class Top extends React.Component {
 							key={item.vk_id}
 							before={
 								<TopItem
+									this_user={item.vk_id == this.props.user.id}
 									num={index+1}
 									imgUrl={this.state.allData[item.vk_id].img_url ? this.state.allData[item.vk_id].img_url : ""}
 									href={"https://vk.com/id" + item.vk_id}>
@@ -173,6 +184,7 @@ class Top extends React.Component {
 							key={item.vk_id}
 							before={
 								<TopItem
+									this_user={item.vk_id == this.props.user.id}
 									num={index+1}
 									imgUrl={this.state.friendsData[item.vk_id].img_url}
 									href={"https://vk.com/id" + item.vk_id}>
@@ -191,6 +203,7 @@ class Top extends React.Component {
 							key={item.group_id}
 							before={
 								<TopItem
+									this_user={item.group_id == this.props.player.group_id}
 									num={index+1}
 									imgUrl={this.state.groupsData[item.group_id].img_url}
 									href={"https://vk.com/club" + item.group_id}>

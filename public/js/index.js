@@ -79634,8 +79634,7 @@ var App = function App() {
               case 2:
                 user = _context.sent;
                 setUser(user);
-                console.log(user);
-                _context.next = 7;
+                _context.next = 6;
                 return _vkontakte_vk_connect__WEBPACK_IMPORTED_MODULE_2___default.a.sendPromise("VKWebAppCallAPIMethod", {
                   "method": "groups.isMember",
                   "request_id": "test_is_member",
@@ -79647,9 +79646,8 @@ var App = function App() {
                   }
                 });
 
-              case 7:
+              case 6:
                 isMember = _context.sent;
-                console.log(isMember);
                 setPopout(null);
 
                 if (isMember.response == 0) {
@@ -79667,7 +79665,7 @@ var App = function App() {
                   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", null, "\u041F\u043E\u0434\u0434\u0435\u0440\u0436\u0430\u0442\u044C \u0440\u0430\u0437\u0440\u0430\u0431\u043E\u0442\u0447\u0438\u043A\u043E\u0432?"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "\u0412\u044B \u043C\u043E\u0436\u0435\u0442\u0435 \u043F\u043E\u0434\u0434\u0435\u0440\u0436\u0430\u0442\u044C \u0440\u0430\u0437\u0440\u0430\u0431\u043E\u0442\u0447\u0438\u043A\u043E\u0432, \u043F\u043E\u0434\u043F\u0438\u0441\u0430\u0432\u0448\u0438c\u044C \u043D\u0430 \u0441\u043E\u043E\u0431\u0449\u0435\u0441\u0442\u0432\u043E Clover Team")));
                 }
 
-              case 11:
+              case 9:
               case "end":
                 return _context.stop();
             }
@@ -79709,7 +79707,9 @@ var App = function App() {
   }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_panels_Top__WEBPACK_IMPORTED_MODULE_8__["default"], {
     id: "top",
     go: go,
-    showPopout: showPopout
+    showPopout: showPopout,
+    player: player,
+    user: fetchedUser
   }));
 };
 
@@ -79815,11 +79815,16 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         style: {
           fontSize: "24px",
-          color: "#4bb34b",
+          color: "#2787f5",
           minWidth: "26px",
           margin: "0 8px 0 8px"
         }
-      }, this.props.num), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Avatar_Avatar__WEBPACK_IMPORTED_MODULE_1___default.a, {
+      }, this.props.num), this.props.this_user && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Avatar_Avatar__WEBPACK_IMPORTED_MODULE_1___default.a, {
+        style: {
+          border: "3px solid #2787f5"
+        },
+        src: this.props.imgUrl
+      }), !this.props.this_user && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Avatar_Avatar__WEBPACK_IMPORTED_MODULE_1___default.a, {
         src: this.props.imgUrl
       })));
     }
@@ -80315,6 +80320,14 @@ function (_React$Component) {
             };
             return item.id;
           });
+          console.log(_this5.props.player);
+          console.log(_this5.props.user);
+          friends_ids.push(_this5.props.user.id);
+          friends_list[_this5.props.user.id] = {
+            img_url: _this5.props.user.photo_100,
+            last_name: _this5.props.user.last_name,
+            first_name: _this5.props.user.first_name
+          };
 
           _this5.setState({
             friendsData: friends_list
@@ -80381,6 +80394,7 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Cell_Cell__WEBPACK_IMPORTED_MODULE_15___default.a, {
           key: item.vk_id,
           before: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_TopItem__WEBPACK_IMPORTED_MODULE_20__["default"], {
+            this_user: item.vk_id == _this6.props.user.id,
             num: index + 1,
             imgUrl: _this6.state.allData[item.vk_id].img_url ? _this6.state.allData[item.vk_id].img_url : "",
             href: "https://vk.com/id" + item.vk_id
@@ -80391,6 +80405,7 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Cell_Cell__WEBPACK_IMPORTED_MODULE_15___default.a, {
           key: item.vk_id,
           before: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_TopItem__WEBPACK_IMPORTED_MODULE_20__["default"], {
+            this_user: item.vk_id == _this6.props.user.id,
             num: index + 1,
             imgUrl: _this6.state.friendsData[item.vk_id].img_url,
             href: "https://vk.com/id" + item.vk_id
@@ -80401,6 +80416,7 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui_dist_components_Cell_Cell__WEBPACK_IMPORTED_MODULE_15___default.a, {
           key: item.group_id,
           before: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_TopItem__WEBPACK_IMPORTED_MODULE_20__["default"], {
+            this_user: item.group_id == _this6.props.player.group_id,
             num: index + 1,
             imgUrl: _this6.state.groupsData[item.group_id].img_url,
             href: "https://vk.com/club" + item.group_id
