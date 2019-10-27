@@ -80010,7 +80010,8 @@ var Home = function Home(_ref) {
         }
       }).then(function (res) {
         axios__WEBPACK_IMPORTED_MODULE_14___default.a.post('/story', {
-          url: res.response.upload_url
+          url: res.response.upload_url,
+          vk_id: player.vk_id
         }).then(function (res) {
           if (res.data.add) {
             setCount(count + 1);

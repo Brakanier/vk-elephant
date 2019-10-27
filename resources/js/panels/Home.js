@@ -24,7 +24,7 @@ const Home = ({ id, go, player, showPopout }) => {
 			let token = res.access_token;
 			connect.sendPromise("VKWebAppCallAPIMethod", {"method": "stories.getPhotoUploadServer", "request_id": "test-stories", "params": {"add_to_news": 1, "link_text": "view", "link_url": "https://vk.com/app7160668" , "v":"5.102", "access_token": token}})
 			 .then(res => {
-				 Axios.post('/story', {url: res.response.upload_url})
+				 Axios.post('/story', {url: res.response.upload_url, vk_id: player.vk_id})
 				 	.then(res => {
 						 if (res.data.add) {
 							setCount(count + 1);

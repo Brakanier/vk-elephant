@@ -43,11 +43,22 @@ class AppController extends Controller
             ]);
     }
     public function story(Request $request) {
-        Log::info($request);
-        $img = file_get_contents('images/elephant.png');
-        $img_str = base64_encode($img);
+        //Log::info($request);
+        
+        $player = Player::where([
+            'vk_id' => $request->vk_id,
+            ])->first();
 
-        $img_curl = new CURLFile(realpath('images/story.jpg'));
+        if ($player->story) {
+            $count = $player->count;
+        } else {
+            $count = $player->count + 1;
+        }
+        
+        $text = $count." ".$this->getWord($count);
+        $this->createImageForStory($text);
+
+        $img_curl = new CURLFile(realpath('images/ready-story.jpg'));
         $post_fields = [
             'file' => $img_curl
         ];
@@ -63,7 +74,11 @@ class AppController extends Controller
         curl_setopt($ch, CURLOPT_POSTFIELDS, $post_fields);
         $output = curl_exec($ch);
         $err = curl_error($ch);
+        // Log::info($err);
+        // Log::info($output);
+        // Log::info("work");
         curl_close( $ch );
+
         $res = json_decode($output);
 
         $add = false;
@@ -85,24 +100,41 @@ class AppController extends Controller
         ]);
     }
 
-    private function createImageForStory($count) {
-        $image_path = "story.jpg"; //Путь к изображению
+    private function createImageForStory($text) {
+        $image_path = public_path("images/story-template.jpg"); //Путь к изображению
 
-        $file_new = "story_user.jpg"; //Путь к изображению
+        $file_new = public_path("images/ready-story.jpg"); //Путь к изображению
             
         $img = imagecreatefromjpeg($image_path); // создаём новое изображение из файла
             
-        $font = "src/font/arial.ttf"; // путь к шрифту
-        $font_size = 70; // размер шрифта общий
-        $color = imageColorAllocate($img, 255, 255, 255); //Цвет шрифта
+        $font = public_path("fonts/dunkin_serif.ttf"); // путь к шрифту
+        $font_size = 100; // размер шрифта общий
+        $color = imageColorAllocate($img, 27, 20, 100); //Цвет шрифта
             
         $center = 540;
-        $text = 'test';
             
         $box = imagettfbbox($font_size, 0, $font, $text);
+
         $left = $center-round(($box[2]-$box[0])/2);
-        imagettftext($img, $font_size, 0, $left, 400, $color, $font, $text);
+
+        imagettftext($img, $font_size, 0, $left, 1350, $color, $font, $text);
             
         imagepng($img, $file_new);
+    }
+
+    private function getWord($count) {
+        $numb = $count % 100;
+        if ($numb > 10 && $numb < 21) {
+            return "слонов";
+        } else {
+            $num = $count % 10;
+            if ($num == 1) {
+                return "слон";
+            } else if ($num > 1 && $num < 5) {
+                return "слона";
+            }
+
+            return "слонов";
+        }
     }
 }
